@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>Sapiens In</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Feathericon CSS -->
+	<link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="../angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/Auth.Contrller.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/Doctor.Contrller.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="DoctorController">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div ng-include="'../angularjs/htmlTemplates/header-menu.html'"></div>
+		<!-- /Header -->
+
+
+		<!-- Sidebar -->
+		<div ng-include="'../angularjs/htmlTemplates/sidebar.html'"></div>
+		<!-- /Sidebar -->
+
+		<!-- Page Wrapper -->
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+
+				<!-- Page Header -->
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-7 col-auto">
+							<h3 class="page-title">Doctors</h3>
+							<!-- <ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+								<li class="breadcrumb-item active">Specialities</li>
+							</ul> -->
+
+							<!-- <select  ng-change="GetAllUsers(SelectedUser)" ng-model="SelectedUser" class="form-control">
+								 
+								<option  ng- ng-repeat="usertype in UserType " ng-value="usertype.UserTypeID">
+									{{usertype.UserType}}
+								</option>
+							</select> -->
+						</div>
+						<div class="col-sm-5 col">
+							<!-- <a href="#Add_doctor_details" data-toggle="modal"
+								class="btn btn-primary float-right mt-2">Add</a> -->
+							<button ng-click="AddUpdateModel(null,false)" class="btn btn-primary float-right mt-2">
+								Add
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<!-- /Page Header -->
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover table-center mb-0">
+										<thead>
+											<tr>
+
+												<th>
+													Name
+												</th>
+
+												<th>
+													Speciality
+												</th>
+												<th>
+													Experience
+												</th>
+												<th>
+													Contact
+												</th>
+												<!-- <th>
+													Session Charges
+												</th> -->
+												<th>Member Since</th>
+
+												<th>Action</th>
+
+											</tr>
+										</thead>
+										<tbody>   
+											<tr ng-repeat="user in Users">
+												<td>
+													<h2 class="table-avatar">
+														<a href="profile.html" class="avatar avatar-sm mr-2">
+															<img ng-if="user.DisplayPicture != 'null'"
+																class="avatar-img rounded-circle"
+																src="{{PicBaseURL + user.DisplayPicture}}"
+																alt="User Image">
+															<img ng-if="user.DisplayPicture == 'null'"
+																class="avatar-img rounded-circle"
+																src="assets/img/DefaultPicture.jpg" alt="User Image">
+														</a>
+														<a href="profile.html">{{user.Name}}</a>
+													</h2>
+												</td>
+												<td>
+													{{user.SpecialityTitle}}
+												</td>
+												<td>{{user.Experience}}</td>
+
+												<td>{{user.MobileNumber}}</td>
+												<!-- <td>{{user.SessionCharges}}</td> -->
+												<td>{{user.AddedDateTime |date}} <br>
+													<!-- <small>02.59 AM</small> -->
+												</td>
+
+												<td>
+
+													<button ng-click="AddUpdateModel(user,true)"
+														class="btn btn-sm btn-primary">
+														Update
+													</button>
+													<!-- <a class="btn btn-sm bg-danger-light" data-toggle="modal" href="#delete_modal">
+														<i class="fe fe-trash"></i> Delete
+													</a> -->
+													<button ng-click="DeleteUser(user,null)"
+														class="btn btn-sm bg-danger-light">
+														<i class="fe fe-trash"></i> Delete
+													</button>
+												</td>
+
+												<!-- <td>$3100.00</td>
+
+												<td>
+													<div class="status-toggle">
+														<input type="checkbox" id="status_1" class="check" checked>
+														<label for="status_1" class="checktoggle">checkbox</label>
+													</div>
+												</td> -->
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /Page Wrapper -->
+
+
+		<!-- Add Modal -->
+		<div class="modal fade" id="Add_doctor_details" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Doctor</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form ng-submit="AddOrUpdateUser()" name="contactForm">
+							<div class="row form-row">
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Name</label>
+										<input type="text" required ng-model="UserObj.Name" class="form-control">
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-6">
+									<label>Speciality</label>
+									<div class="form-group">
+										<select required ng-model="UserObj.SpecialityID" class="form-control">
+											<option>-- Select --</option>
+											<option ng-repeat="Speciality in Specialities "
+												ng-value="Speciality.SpecialityID">{{Speciality.SpecialityTitle}}
+											</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Experience</label>
+										<input required type="text" ng-model="UserObj.Experience" class="form-control">
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>MobileNumber</label>
+										<input required type="number" ng-model="UserObj.MobileNumber"
+											class="form-control">
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Password</label>
+										<input required type="password" ng-model="UserObj.Password"
+											class="form-control">
+									</div>
+								</div>
+
+
+
+
+
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Image</label>
+										<input type="file" onchange="angular.element(this).scope().uploadpic(this)"
+											id="image" class="form-control">
+									</div>
+								</div>
+
+								<img ng-if="src != null" style="display: block;
+									margin-left: auto;
+									margin-right: auto;
+									width: 50%;" ng-src="{{src}}">
+
+								<img ng-if="IsEdit == true && src == null" style="display: block;
+									margin-left: auto;
+									margin-right: auto;
+									width: 50%;" ng-src="{{PicBaseURL + UserObj.DisplayPicture}}">
+							</div>
+
+
+
+							<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /ADD Modal -->
+
+		<!-- Delete Modal -->
+		<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<!--	<div class="modal-header">
+								<h5 class="modal-title">Delete</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>-->
+					<div class="modal-body">
+						<div class="form-content p-2">
+							<h4 class="modal-title">Delete</h4>
+							<p class="mb-4">Are you sure want to delete?</p>
+							<button ng-click="DeleteUser(selectedUserObj,true)" type="button"
+								class="btn btn-primary">Save </button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Delete Modal -->
+
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery-3.2.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Datatables JS -->
+	<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="assets/plugins/datatables/datatables.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+</html>

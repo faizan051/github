@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>Teams</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Feathericon CSS -->
+	<link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="../angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/Auth.Contrller.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/Add-teams.Contrller.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/moment.js"></script>
+
+
+</head>
+
+<body ng-app="app" ng-controller="AddTeamsController">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div ng-include="'../angularjs/htmlTemplates/header-menu.html'"></div>
+		<!-- /Header -->
+
+
+		<!-- Sidebar -->
+		<div ng-include="'../angularjs/htmlTemplates/sidebar.html'"></div>
+		<!-- /Sidebar -->
+
+		<!-- Page Wrapper -->
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+
+				<!-- Page Header -->
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-7 col-auto">
+							<h3 ng-if="SelectedTeamObj == null" class="page-title">Create Teams</h3>
+							<h3 ng-if="SelectedTeamObj != null" class="page-title">Update Team</h3>
+
+
+							
+							<!-- <ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+								<li class="breadcrumb-item active">Specialities</li>
+							</ul> -->
+
+							<!-- <select  ng-change="GetAllUsers(SelectedUser)" ng-model="SelectedUser" class="form-control">
+								<option>-- Select --</option>
+								<option   ng-repeat="usertype in UserType " ng-value="usertype.UserTypeID">
+									{{usertype.UserType}}
+								</option>
+							</select> -->
+						</div>
+						<div class="col-sm-5 col">
+							<!-- <a href="#Add_doctor_details" data-toggle="modal"
+								class="btn btn-primary float-right mt-2">Add</a> -->
+							<!-- <button ng-click="AddUpdateModel(null,false)" class="btn btn-primary float-right mt-2">
+								Add
+							</button> -->
+
+						</div>
+					</div>
+				</div>
+				<!-- /Page Header -->
+
+				<!-- Page Content -->
+				<div class="content">
+					<div class="container">
+
+						<div class="row">
+							<div class="col-4">
+								<div class="card">
+									<div class="card-body">
+
+										<div class="booking-doc-info">
+											<a href="#" class="booking-doc-img">
+												<img src="assets/img/doct-icon.jpg" alt="User Image">
+											</a>
+											<div class="booking-info">
+												<h4 ng-click="SelectUser(users.Doctor)"
+													style="color: #0dd9f9;cursor: pointer;">
+													Select doctor
+												</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-4">
+								<div class="card">
+									<div class="card-body">
+
+										<div class="booking-doc-info">
+											<a href="#" class="booking-doc-img">
+												<img src="assets/img/pharmaciest.jpg" alt="User Image">
+											</a>
+											<div class="booking-info">
+												<!-- <h4><a href="#"></a></h4> -->
+												<h4 ng-click="SelectUser(users.Pharmacist)"
+													style="color: #0dd9f9;cursor: pointer;">
+													Select pharmacist
+												</h4>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-4">
+								<div class="card">
+									<div class="card-body">
+
+										<div class="booking-doc-info">
+											<a href="#" class="booking-doc-img">
+												<img src="assets/img/nutricist.png" alt="User Image">
+											</a>
+											<div class="booking-info">
+												<h4 ng-click="SelectUser(users.Nutritionist)"
+													style="color: #0dd9f9;cursor: pointer;">
+													Select Nutritionist
+												</h4>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-4">
+								<div ng-if="selectedDoctor != null" class="card">
+									<div class="card-body">
+
+
+										<div class="booking-doc-info">
+											<a href="#" class="booking-doc-img">
+												<img ng-if="selectedDoctor.DisplayPicture != null && selectedDoctor.DisplayPicture != 'null'"
+													src="{{PicBaseURL + selectedDoctor.DisplayPicture}}"
+													alt="User Image">
+												<img ng-if="selectedDoctor.DisplayPicture == null && selectedDoctor.DisplayPicture == 'null'"
+													src="assets/img/DefaultPicture.jpg" alt="User Image">
+
+
+											</a>
+											<div class="booking-info">
+												<h4><a href="#">{{selectedDoctor.Name}}</a></h4>
+												<div class="rating">
+													<span
+														class="d-inline-block average-rating">{{selectedDoctor.MobileNumber}}</span>
+												</div>
+												<div class="rating">
+													<span
+														class="d-inline-block average-rating"><small>Education : {{selectedDoctor.Education}}</small></span>
+												</div>
+												<div class="rating">
+													<span
+														class="d-inline-block average-rating"><small>Experience :{{selectedDoctor.Experience}}</small></span>
+												</div>
+												<p class="text-muted mb-0">
+													{{selectedDoctor.SpecialityTitle}}
+												</p>
+											</div>
+										</div>
+
+										<!-- <div  class="booking-doc-info">
+											<a href="#" class="booking-doc-img">
+												<img src="assets/img/doct-icon.jpg" alt="User Image">
+											</a>
+											<div class="booking-info">
+												<h4 ng-click="SelectUser(users.Doctor)"
+													style="color: #0dd9f9;cursor: pointer;">
+													Select doctor
+												</h4>
+											</div>
+										</div> -->
+									</div>
+								</div>
+							</div>
+
+							<div class="col-4">
+								<div ng-if="selectedPharmacist != null" class="card">
+									<div class="card-body">
+										<div class="booking-doc-info">
+											<a href="#" class="booking-doc-img">
+												<img ng-if="selectedPharmacist.DisplayPicture != null && selectedPharmacist.DisplayPicture != 'null'"
+													src="{{PicBaseURL + selectedPharmacist.DisplayPicture}}"
+													alt="User Image">
+												<img ng-if="selectedPharmacist.DisplayPicture == null || selectedPharmacist.DisplayPicture == 'null'"
+													src="assets/img/DefaultPicture.jpg" alt="User Image">
+											</a>
+											<div class="booking-info">
+												<h4><a href="#">{{selectedPharmacist.Name}}</a></h4>
+												<div class="rating">
+													<!-- <i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star"></i> -->
+													<span
+														class="d-inline-block average-rating">{{selectedPharmacist.MobileNumber}}</span>
+												</div>
+
+												<div class="rating">
+													<span
+														class="d-inline-block average-rating"><small>Education : {{selectedDoctor.Education}}</small></span>
+												</div>
+												<div class="rating">
+													<span
+														class="d-inline-block average-rating"><small>Experience :{{selectedDoctor.Experience}}</small></span>
+												</div>
+												<p class="text-muted mb-0">
+													{{selectedPharmacist.SpecialityTitle}}
+												</p>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-4">
+								<div ng-if="selectedNutritionist != null" class="card">
+									<div class="card-body">
+
+										<div class="booking-doc-info">
+											<a href="#" class="booking-doc-img">
+												<img ng-if="selectedNutritionist.DisplayPicture != null && selectedNutritionist.DisplayPicture != 'null'"
+													src="{{PicBaseURL + selectedNutritionist.DisplayPicture}}"
+													alt="User Image">
+												<img ng-if="selectedNutritionist.DisplayPicture == null || selectedNutritionist.DisplayPicture == 'null'"
+													src="assets/img/DefaultPicture.jpg" alt="User Image">
+											</a>
+											<div class="booking-info">
+												<h4><a href="#">{{selectedNutritionist.Name}}</a></h4>
+												<div class="rating">
+													<!-- <i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star"></i> -->
+													<span
+														class="d-inline-block average-rating">{{selectedNutritionist.MobileNumber}}</span>
+												</div>
+												<div class="rating">
+													<span
+														class="d-inline-block average-rating"><small>Education : {{selectedDoctor.Education}}</small></span>
+												</div>
+												<div class="rating">
+													<span
+														class="d-inline-block average-rating"><small>Experience :{{selectedDoctor.Experience}}</small></span>
+												</div>
+												<p class="text-muted mb-0">
+													{{selectedNutritionist.SpecialityTitle}}
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="row">
+							<div class="col-12">
+
+
+
+								<!-- Schedule Widget -->
+								<div class="card booking-schedule schedule-widget">
+
+									<!-- Schedule Header -->
+									<div class="schedule-header">
+
+										<div ng-if="SelectedDay != null" class="row form-row">
+
+
+											<div class="col-12 col-sm-4">
+												<div class="form-group">
+													<label>Session Charges</label>
+													<input type="number" required ng-model="TeamObj.SessionCharges"
+														class="form-control">
+												</div>
+											</div>
+
+
+											<div class="col-12 col-sm-4">
+												<label>Speciality</label>
+												<div class="form-group">
+													<select required ng-model="TeamObj.SpecialityID"
+														class="form-control">
+														<option>-- Select --</option>
+														<option ng-repeat="Speciality in Specialities "
+															ng-value="Speciality.SpecialityID">
+															{{Speciality.SpecialityTitle}}
+														</option>
+													</select>
+												</div>
+
+												<!-- <label style="margin-top: 38px;">Set to all</label>
+												<input class="form-group" ng-change="SetAllSlots(IsSetToAll)"
+													type="checkbox" ng-model="IsSetToAll"> -->
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<style>
+													.day-slot li:hover {
+														border: solid 1px;
+														cursor: pointer;
+													}
+												</style>
+												<!-- Day Slot -->
+												<div class="day-slot">
+													<ul>
+														<li style="{{day.Selected == true? 'background-color: #0dd9f9;color:white;':''}}"
+															ng-click="SetSelectedDay(day)" ng-repeat="day in days">
+															<span>{{day.dayTitle}}</span>
+														</li>
+
+													</ul>
+												</div>
+												<!-- /Day Slot -->
+
+											</div>
+										</div>
+									</div>
+									<!-- /Schedule Header -->
+
+									<!-- Schedule Content -->
+									<div class="schedule-cont">
+										<div class="row">
+											<div class="col-md-12">
+
+												<div ng-if="SelectedDay != null" class="row form-row">
+													<div class="col-12 col-sm-10">
+														<div class="form-group">
+															<label>Select time</label>
+															<input
+																ng-keydown="$event.keyCode === 13 && SetTime(SelectedTime)"
+																type="time" required ng-model="SelectedTime"
+																class="form-control">
+														</div>
+													</div>
+												</div>
+
+												<!-- Time Slot -->
+												<div class="time-slot">
+													<ul class="clearfix">
+
+														<li   ng-if="SelectedDay == time.DayNumber && time.Status == true"
+															ng-repeat="time in TeamObj.TimeSlots"
+															style="margin-bottom: 2px;">
+															<p class="timing ">
+																<span>{{time.TimeSlot | date : 'h:mm a'}} 
+
+																	<button ng-click="deleteTime($index)"  
+																	class="btn btn-sm bg-danger-light">
+																	<i class="fe fe-trash"></i> 
+																</button>
+															</span>
+															</p>
+															<!-- <a  ng-click="deleteTime($index)" class="timing " href="#">
+																
+															</a> -->
+														</li>
+													</ul>
+												</div>
+												<!-- /Time Slot -->
+
+											</div>
+										</div>
+									</div>
+									<!-- /Schedule Content -->
+
+								</div>
+								<!-- /Schedule Widget -->
+
+								<p style="color: red;">
+									<b>
+										{{ErrorMessage}}
+									</b>
+								</p>
+
+								<!-- Submit Section -->
+								<div class="submit-section proceed-btn text-right">
+									<!-- <a href="checkout.html" class="btn btn-primary submit-btn">Proceed to Pay</a> -->
+									<button ng-click="FormValidation()" class="btn btn-primary submit-btn">
+										
+										<span ng-if="SelectedTeamObj == null">
+											Submit
+										</span>
+										<span ng-if="SelectedTeamObj != null">
+											Save changes
+										</span>
+									</button>
+								</div>
+								<!-- /Submit Section -->
+
+
+							</div>
+						</div>
+
+					</div>
+					<!-- /Page Content -->
+
+				</div>
+			</div>
+			<!-- /Page Wrapper -->
+
+
+			<!-- Add Modal -->
+			<div class="modal fade" id="Add_User_details" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Select
+								<span ng-if="users.Doctor == SelectedUserTypeID"> doctor</span>
+								<span ng-if="users.Pharmacist == SelectedUserTypeID"> pharmacist</span>
+								<span ng-if="users.Nutritionist == SelectedUserTypeID"> nutritionist</span>
+							</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="table-responsive">
+								<table class="table table-hover table-center mb-0">
+									<thead>
+										<tr>
+
+											<th>
+												Name
+											</th>
+
+											<th>
+												Speciality
+											</th>
+											<th>
+												Experience
+											</th>
+											<th>
+												Contact
+											</th>
+
+											<th>Member Since</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-click="SetSelecteduser(user)" ng-repeat="user in Users">
+											<td>
+												<h2 class="table-avatar">
+													<a href="#" class="avatar avatar-sm mr-2">
+														<img ng-if="user.DisplayPicture != 'null'"
+															class="avatar-img rounded-circle"
+															src="{{PicBaseURL + user.DisplayPicture}}" alt="User Image">
+														<img ng-if="user.DisplayPicture == 'null'"
+															class="avatar-img rounded-circle"
+															src="assets/img/DefaultPicture.jpg" alt="User Image">
+													</a>
+													<a href="#">{{user.Name}}</a>
+												</h2>
+											</td>
+											<td>
+												{{user.SpecialityTitle}}
+											</td>
+											<td>{{user.Experience}}</td>
+											<td>{{user.MobileNumber}}</td>
+											<td>{{user.AddedDateTime |date}} <br>
+											</td>
+
+
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /ADD Modal -->
+
+			<!-- Delete Modal -->
+			<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<!--	<div class="modal-header">
+								<h5 class="modal-title">Delete</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>-->
+						<div class="modal-body">
+							<div class="form-content p-2">
+								<h4 class="modal-title">Delete</h4>
+								<p class="mb-4">Are you sure want to delete?</p>
+								<button ng-click="DeleteSpeciality(selectedSpecialityObj,true)" type="button"
+									class="btn btn-primary">Save </button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Delete Modal -->
+
+
+		</div>
+		<!-- /Main Wrapper -->
+
+		<!-- jQuery -->
+		<script src="assets/js/jquery-3.2.1.min.js"></script>
+
+		<!-- Bootstrap Core JS -->
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JS -->
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Datatables JS -->
+		<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="assets/plugins/datatables/datatables.min.js"></script>
+
+		<!-- Custom JS -->
+		<script src="assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+</html>

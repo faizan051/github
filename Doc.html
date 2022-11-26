@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+   
+    <link href="assets/img/favicon.png" rel="icon" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+
+    <!-- Fontawesome CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css" />
+
+    <!-- Datetimepicker CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css" />
+
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css" />
+
+    <!-- Fancybox CSS -->
+    <link
+      rel="stylesheet"
+      href="assets/plugins/fancybox/jquery.fancybox.min.css"
+    />
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link href="assets/css/rateit.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="./angularjs/angular.min.js"></script>
+    <script
+      type="text/javascript"
+      src="./angularjs/Services/api-resolver.service.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./angularjs/Services/http.serviec.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./angularjs/Services/constant.serviec.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./angularjs/Services/api.serviec.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./angularjs/Controllers/Team.Contrller.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./angularjs/Controllers/Toolbar.Contrller.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./angularjs/Controllers/Footer.Contrller.js"
+    ></script>
+  </head>
+  <body ng-app="app">
+    <div class="main-wrapper">
+      <!-- Header -->
+      <ng-include
+        src="'./angularjs/htmlTemplates/Toolbar.html'"
+        style="width: 100%"
+      ></ng-include>
+      <!-- /Header -->
+
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 col-lg-4">
+              <div class="card cardredius" style="border: 3px solid black">
+                <div class="card-body">
+                  <div class="doctor-widget">
+                    <div class="doc-info-left">
+                      <div
+                        class="doc-info-cont d-flex justify-content-center flex-column align-items-center"
+                      >
+                        <img
+                          style="width: 250px; height: 250px !important"
+                          src="./assets/img/Talha.jpeg"
+                          class="img-fluid align-content-center imageredius" 
+                          alt=""
+                        />
+                        <h4 class="doc-name text-center align-content-left mt-2">
+                          Dr.Talha Bin Qammar
+                          <a href="#"> </a>
+                        </h4>
+                        <p class="text-center">Profession : Doctor</p>
+                        <p class="">Experience : Cardiologist</p>
+                        <a type="button" class="btn btn-primary" href="Talha.html">Book Appointment</a> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+
+            <div class="col-md-5 col-lg-4">
+              <div class="card cardredius" style="border: 3px solid black">
+                <div class="card-body">
+                  <div class="doctor-widget">
+                    <div class="doc-info-left">
+                      <div
+                        class="doc-info-cont d-flex justify-content-center flex-column align-items-center"
+                      >
+                        <img
+                          style="width: 250px; height: 250px !important"
+                          src="./assets/img/Farhan.jpeg"
+                          class="img-fluid align-content-center imageredius"
+                          alt=""
+                        />
+                        <h4 class="doc-name text-center align-content-left mt-2">
+                          Dr.Farhan
+                          <a href="#"> </a>
+                        </h4>
+                        <p class="text-center">Profession : Doctor</p>
+                        <p class="">Experience : Cardiologist</p>
+                       <a type="button" class="btn btn-primary" href="Farhan.html">Book Appointment</a> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+             
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-include src="'./angularjs/htmlTemplates/Footer.html'" style="width:100%;"></ng-include>
+
+  </body>
+</html>

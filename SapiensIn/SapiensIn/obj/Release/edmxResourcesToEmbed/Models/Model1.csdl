@@ -1,0 +1,872 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SapiensInModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Appointment_Proceedings">
+    <Key>
+      <PropertyRef Name="AppointmentProceedingID" />
+    </Key>
+    <Property Name="AppointmentProceedingID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AppointmentID" Type="Int64" Nullable="false" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="SenderUserTypeID" Type="Int32" />
+    <Property Name="ReceiverUserTypeID" Type="Int32" />
+    <Property Name="AttachmentFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DiscountVouchers">
+    <Key>
+      <PropertyRef Name="DiscountVoucherID" />
+    </Key>
+    <Property Name="DiscountVoucherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VoucherCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VoucherDecription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="VoucherImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DiscountPercentage" Type="Double" />
+    <Property Name="DiscountAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="IsLabApplicable" Type="Boolean" />
+    <Property Name="IsMedicineApplicable" Type="Boolean" />
+    <Property Name="IsAppointmentApplicable" Type="Boolean" />
+    <Property Name="IsEnabled" Type="Boolean" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Labs">
+    <Key>
+      <PropertyRef Name="LabID" />
+    </Key>
+    <Property Name="LabID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LabTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DisplayPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DiscountPercentage" Type="Double" Nullable="false" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LabTests">
+    <Key>
+      <PropertyRef Name="LabTestID" />
+    </Key>
+    <Property Name="LabTestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LabTestTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LabTestPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Medicines">
+    <Key>
+      <PropertyRef Name="MedicineID" />
+    </Key>
+    <Property Name="MedicineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MedicineTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient_Appointments">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="SessionCharges" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="PaymentImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SessionStartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SessionStartTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="TeamTimeSlotID" Type="Int32" />
+    <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsSessionEnded" Type="Boolean" />
+    <Property Name="SessionEndDatetime" Type="DateTime" Precision="3" />
+    <Property Name="DiscountVoucherID" Type="Int32" />
+    <Property Name="VoucherTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DiscountVoucherPercentage" Type="Double" />
+    <Property Name="DiscountVoucherAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="FinalAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient_LabTests">
+    <Key>
+      <PropertyRef Name="PatientLabTestID" />
+    </Key>
+    <Property Name="PatientLabTestID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LabID" Type="Int32" Nullable="false" />
+    <Property Name="LabTestID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="AppointmentID" Type="Int64" />
+    <Property Name="DiscountPercentage" Type="Double" Nullable="false" />
+    <Property Name="LabTestPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="FinalAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="PaymentImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LabResultFileAttachment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DiscountVoucherID" Type="Int32" />
+    <Property Name="VoucherTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DiscountVoucherPercentage" Type="Double" />
+    <Property Name="DiscountVoucherAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient_MedicineOrder">
+    <Key>
+      <PropertyRef Name="PatientMedicineOrderID" />
+    </Key>
+    <Property Name="PatientMedicineOrderID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrescriptionImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="AppointmentID" Type="Int64" />
+    <Property Name="FinalAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="PaymentImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelivered" Type="Boolean" />
+    <Property Name="IsDeliveredDateTime" Type="DateTime" Precision="3" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="BillingAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DiscountVoucherID" Type="Int32" />
+    <Property Name="VoucherTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DiscountVoucherPercentage" Type="Double" />
+    <Property Name="DiscountVoucherAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patient_Medicines">
+    <Key>
+      <PropertyRef Name="PatientMedicineID" />
+    </Key>
+    <Property Name="PatientMedicineID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PatientMedicineOrderID" Type="Int64" Nullable="false" />
+    <Property Name="MedicineID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RatingAndReviews">
+    <Key>
+      <PropertyRef Name="RatingReviewID" />
+    </Key>
+    <Property Name="RatingReviewID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rating" Type="Double" />
+    <Property Name="ReviewStatement" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Specialities">
+    <Key>
+      <PropertyRef Name="SpecialityID" />
+    </Key>
+    <Property Name="SpecialityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SpecialityTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DisplayPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Team_TimeSlots">
+    <Key>
+      <PropertyRef Name="TeamTimeSlotID" />
+    </Key>
+    <Property Name="TeamTimeSlotID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="DayNumber" Type="Int32" Nullable="false" />
+    <Property Name="TimeSlot" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeamMembers">
+    <Key>
+      <PropertyRef Name="TeamMemberID" />
+    </Key>
+    <Property Name="TeamMemberID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int64" Nullable="false" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="TeamID" />
+    </Key>
+    <Property Name="TeamID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SpecialityID" Type="Int32" Nullable="false" />
+    <Property Name="SessionCharges" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+    <Property Name="SpecialityID" Type="Int32" />
+    <Property Name="Experience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SatisfactionPercentage" Type="Double" />
+    <Property Name="DisplayPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResidentialAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Education" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AddedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTypes">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Appointment_Proceedings" EntityType="Self.Appointment_Proceedings" />
+    <EntitySet Name="DiscountVouchers" EntityType="Self.DiscountVouchers" />
+    <EntitySet Name="Labs" EntityType="Self.Labs" />
+    <EntitySet Name="LabTests" EntityType="Self.LabTests" />
+    <EntitySet Name="Medicines" EntityType="Self.Medicines" />
+    <EntitySet Name="Patient_Appointments" EntityType="Self.Patient_Appointments" />
+    <EntitySet Name="Patient_LabTests" EntityType="Self.Patient_LabTests" />
+    <EntitySet Name="Patient_MedicineOrder" EntityType="Self.Patient_MedicineOrder" />
+    <EntitySet Name="Patient_Medicines" EntityType="Self.Patient_Medicines" />
+    <EntitySet Name="RatingAndReviews" EntityType="Self.RatingAndReviews" />
+    <EntitySet Name="Specialities" EntityType="Self.Specialities" />
+    <EntitySet Name="Team_TimeSlots" EntityType="Self.Team_TimeSlots" />
+    <EntitySet Name="TeamMembers" EntityType="Self.TeamMembers" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="UserTypes" EntityType="Self.UserTypes" />
+    <FunctionImport Name="f_HELPER_PROCEDURE_CLEAN_DB" />
+    <FunctionImport Name="ADD_OR_UPDATE_DISCOUNT_VOUCHERS" ReturnType="Collection(Int32)">
+      <Parameter Name="DiscountVoucherID" Mode="In" Type="Int32" />
+      <Parameter Name="VoucherTitle" Mode="In" Type="String" />
+      <Parameter Name="VoucherCode" Mode="In" Type="String" />
+      <Parameter Name="VoucherDecription" Mode="In" Type="String" />
+      <Parameter Name="VoucherImage" Mode="In" Type="String" />
+      <Parameter Name="DiscountPercentage" Mode="In" Type="Double" />
+      <Parameter Name="DiscountAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="IsLabApplicable" Mode="In" Type="Boolean" />
+      <Parameter Name="IsMedicineApplicable" Mode="In" Type="Boolean" />
+      <Parameter Name="IsAppointmentApplicable" Mode="In" Type="Boolean" />
+      <Parameter Name="IsEnabled" Mode="In" Type="Boolean" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_LAB_TESTS" ReturnType="Collection(Int32)">
+      <Parameter Name="LabTestID" Mode="In" Type="Int32" />
+      <Parameter Name="LabTestTitle" Mode="In" Type="String" />
+      <Parameter Name="LabTestPrice" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_LABS" ReturnType="Collection(Int32)">
+      <Parameter Name="LabID" Mode="In" Type="Int32" />
+      <Parameter Name="LabTitle" Mode="In" Type="String" />
+      <Parameter Name="DisplayPicture" Mode="In" Type="String" />
+      <Parameter Name="DiscountPercentage" Mode="In" Type="Double" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_MEDICINES" ReturnType="Collection(Int32)">
+      <Parameter Name="MedicineID" Mode="In" Type="Int32" />
+      <Parameter Name="MedicineTitle" Mode="In" Type="String" />
+      <Parameter Name="DisplayPicture" Mode="In" Type="String" />
+      <Parameter Name="Price" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_PATIENT_APPOINTMENT_PROCEEDINGS" ReturnType="Collection(Int64)">
+      <Parameter Name="AppointmentProceedingID" Mode="In" Type="Int64" />
+      <Parameter Name="AppointmentID" Mode="In" Type="Int64" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="SenderUserTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="ReceiverUserTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="AttachmentFileName" Mode="In" Type="String" />
+      <Parameter Name="Comment" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_PATIENT_APPOINTMENTS" ReturnType="Collection(Int64)">
+      <Parameter Name="AppointmentID" Mode="In" Type="Int64" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+      <Parameter Name="SessionCharges" Mode="In" Type="Decimal" />
+      <Parameter Name="SessionStartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="SessionStartTime" Mode="In" Type="Time" />
+      <Parameter Name="TeamTimeSlotID" Mode="In" Type="Int32" />
+      <Parameter Name="IsSessionEnded" Mode="In" Type="Boolean" />
+      <Parameter Name="SessionEndDatetime" Mode="In" Type="DateTime" />
+      <Parameter Name="PaymentImage" Mode="In" Type="String" />
+      <Parameter Name="BillingAddress" Mode="In" Type="String" />
+      <Parameter Name="DiscountVoucherID" Mode="In" Type="Int32" />
+      <Parameter Name="VoucherTitle" Mode="In" Type="String" />
+      <Parameter Name="DiscountVoucherPercentage" Mode="In" Type="Double" />
+      <Parameter Name="DiscountVoucherAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="FinalAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_PATIENT_LAB_TESTS" ReturnType="Collection(Int64)">
+      <Parameter Name="PatientLabTestID" Mode="In" Type="Int64" />
+      <Parameter Name="LabID" Mode="In" Type="Int32" />
+      <Parameter Name="LabTestID" Mode="In" Type="Int32" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="AppointmentID" Mode="In" Type="Int64" />
+      <Parameter Name="DiscountPercentage" Mode="In" Type="Double" />
+      <Parameter Name="LabTestPrice" Mode="In" Type="Decimal" />
+      <Parameter Name="FinalAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LabResultFileAttachment" Mode="In" Type="String" />
+      <Parameter Name="PaymentImage" Mode="In" Type="String" />
+      <Parameter Name="BillingAddress" Mode="In" Type="String" />
+      <Parameter Name="DiscountVoucherID" Mode="In" Type="Int32" />
+      <Parameter Name="VoucherTitle" Mode="In" Type="String" />
+      <Parameter Name="DiscountVoucherPercentage" Mode="In" Type="Double" />
+      <Parameter Name="DiscountVoucherAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_PATIENT_MEDICINE_ORDER" ReturnType="Collection(Int64)">
+      <Parameter Name="PatientMedicineOrderID" Mode="In" Type="Int64" />
+      <Parameter Name="OrderNumber" Mode="In" Type="String" />
+      <Parameter Name="PrescriptionImage" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="AppointmentID" Mode="In" Type="Int64" />
+      <Parameter Name="FinalAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="PaymentImage" Mode="In" Type="String" />
+      <Parameter Name="BillingAddress" Mode="In" Type="String" />
+      <Parameter Name="OrderDate" Mode="In" Type="DateTime" />
+      <Parameter Name="DiscountVoucherID" Mode="In" Type="Int32" />
+      <Parameter Name="VoucherTitle" Mode="In" Type="String" />
+      <Parameter Name="DiscountVoucherPercentage" Mode="In" Type="Double" />
+      <Parameter Name="DiscountVoucherAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_PATIENT_MEDICINE_ORDER_DETAILS" ReturnType="Collection(Int64)">
+      <Parameter Name="PatientMedicineID" Mode="In" Type="Int64" />
+      <Parameter Name="PatientMedicineOrderID" Mode="In" Type="Int64" />
+      <Parameter Name="MedicineID" Mode="In" Type="Int32" />
+      <Parameter Name="Quantity" Mode="In" Type="Int32" />
+      <Parameter Name="UnitPrice" Mode="In" Type="Decimal" />
+      <Parameter Name="TotalPrice" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_RATING_AND_REVIEW" ReturnType="Collection(Int64)">
+      <Parameter Name="RatingReviewID" Mode="In" Type="Int64" />
+      <Parameter Name="Rating" Mode="In" Type="Double" />
+      <Parameter Name="ReviewStatement" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_SPECIALITIES" ReturnType="Collection(Int32)">
+      <Parameter Name="SpecialityID" Mode="In" Type="Int32" />
+      <Parameter Name="SpecialityTitle" Mode="In" Type="String" />
+      <Parameter Name="DisplayPicture" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_TEAM_MEMBERS" ReturnType="Collection(Int64)">
+      <Parameter Name="TeamMemberID" Mode="In" Type="Int64" />
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_TEAM_TIME_SLOTS" ReturnType="Collection(Int64)">
+      <Parameter Name="TeamTimeSlotID" Mode="In" Type="Int64" />
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+      <Parameter Name="DayNumber" Mode="In" Type="Int32" />
+      <Parameter Name="TimeSlot" Mode="In" Type="Time" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_TEAMS" ReturnType="Collection(Int32)">
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+      <Parameter Name="TeamTitle" Mode="In" Type="String" />
+      <Parameter Name="SpecialityID" Mode="In" Type="Int32" />
+      <Parameter Name="SessionCharges" Mode="In" Type="Decimal" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="ADD_OR_UPDATE_USERS" ReturnType="Collection(Int64)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="UserTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="SpecialityID" Mode="In" Type="Int32" />
+      <Parameter Name="Experience" Mode="In" Type="String" />
+      <Parameter Name="SatisfactionPercentage" Mode="In" Type="Double" />
+      <Parameter Name="DisplayPicture" Mode="In" Type="String" />
+      <Parameter Name="MobileNumber" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="Status" Mode="In" Type="Boolean" />
+      <Parameter Name="ResidentialAddress" Mode="In" Type="String" />
+      <Parameter Name="Education" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CHECK_MOBILE_NUMBER_FOR_ACCOUNT_CREATION" ReturnType="Collection(Int32)">
+      <Parameter Name="MobileNumber" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_ALL_LAB_TESTS" ReturnType="Collection(SapiensInModel.GET_ALL_LAB_TESTS_Result)">
+      <Parameter Name="SearchQuery" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_ALL_LABS" ReturnType="Collection(SapiensInModel.GET_ALL_LABS_Result)" />
+    <FunctionImport Name="GET_ALL_MEDICINES" ReturnType="Collection(SapiensInModel.GET_ALL_MEDICINES_Result)">
+      <Parameter Name="SearchQuery" Mode="In" Type="String" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_ALL_SPECIALITIES" ReturnType="Collection(SapiensInModel.GET_ALL_SPECIALITIES_Result)" />
+    <FunctionImport Name="GET_APPOINTMENT_PROCEEDINGS" ReturnType="Collection(SapiensInModel.GET_APPOINTMENT_PROCEEDINGS_Result)">
+      <Parameter Name="AppointmentID" Mode="In" Type="Int64" />
+      <Parameter Name="UserTypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_APPOINTMENTS_FOR_DOCTOR_PROFILE" ReturnType="Collection(SapiensInModel.GET_APPOINTMENTS_FOR_DOCTOR_PROFILE_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_APPOINTMENTS_FOR_PATIENT_PROFILE" ReturnType="Collection(SapiensInModel.GET_APPOINTMENTS_FOR_PATIENT_PROFILE_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_APPOINTMENTS_REPORT" ReturnType="Collection(SapiensInModel.GET_APPOINTMENTS_REPORT_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="SpecialityID" Mode="In" Type="String" />
+      <Parameter Name="TeamID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_AVAILABLE_TIME_SLOTS_BY_TEAM_ID_AND_DATE" ReturnType="Collection(SapiensInModel.GET_AVAILABLE_TIME_SLOTS_BY_TEAM_ID_AND_DATE_Result)">
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+      <Parameter Name="Date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GET_DISCOUNT_VOUCHERS" ReturnType="Collection(SapiensInModel.GET_DISCOUNT_VOUCHERS_Result)">
+      <Parameter Name="VoucherCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_LATEST_APPOINTMENT_PROCEEDINGS" ReturnType="Collection(SapiensInModel.GET_LATEST_APPOINTMENT_PROCEEDINGS_Result)">
+      <Parameter Name="AppointmentID" Mode="In" Type="Int64" />
+      <Parameter Name="UserTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="AppointmentProceedingID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PATIENT_LAB_TEST_REPORT" ReturnType="Collection(SapiensInModel.GET_PATIENT_LAB_TEST_REPORT_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+      <Parameter Name="LabID" Mode="In" Type="String" />
+      <Parameter Name="LabTestID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PATIENT_LAB_TESTS" ReturnType="Collection(SapiensInModel.GET_PATIENT_LAB_TESTS_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PATIENT_MEDICINE_DETAILS_BY_ORDER_ID" ReturnType="Collection(SapiensInModel.GET_PATIENT_MEDICINE_DETAILS_BY_ORDER_ID_Result)">
+      <Parameter Name="PatientMedicineOrderID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PATIENT_MEDICINE_ORDER_REPORT" ReturnType="Collection(SapiensInModel.GET_PATIENT_MEDICINE_ORDER_REPORT_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+      <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GET_PATIENT_MEDICINE_ORDERS" ReturnType="Collection(SapiensInModel.GET_PATIENT_MEDICINE_ORDERS_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_REV_EWS_AND_RATINGS" ReturnType="Collection(SapiensInModel.GET_REV_EWS_AND_RATINGS_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_STATISTICS_FOR_PATIENT_PROFILE" ReturnType="Collection(SapiensInModel.GET_STATISTICS_FOR_PATIENT_PROFILE_Result)">
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_TEAMS" ReturnType="Collection(SapiensInModel.GET_TEAMS_Result)">
+      <Parameter Name="TeamID" Mode="In" Type="Int32" />
+      <Parameter Name="SpecialityID" Mode="In" Type="String" />
+      <Parameter Name="SearchQuery" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="GET_TIME_SLOTS_BY_TEAM_ID" ReturnType="Collection(SapiensInModel.GET_TIME_SLOTS_BY_TEAM_ID_Result)">
+      <Parameter Name="TeamID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="GET_USER_TYPES" ReturnType="Collection(SapiensInModel.GET_USER_TYPES_Result)" />
+    <FunctionImport Name="GET_USERS" ReturnType="Collection(SapiensInModel.GET_USERS_Result)">
+      <Parameter Name="UserTypeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="LOGIN_USER" ReturnType="Collection(SapiensInModel.LOGIN_USER_Result)">
+      <Parameter Name="MobileNumber" Mode="In" Type="String" />
+      <Parameter Name="Password" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="MARK_PATIENT_MEDICINE_ORDER_AS_DELIVERED">
+      <Parameter Name="PatientMedicineOrderID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="SEARCH_LAB_TESTS" ReturnType="Collection(SapiensInModel.SEARCH_LAB_TESTS_Result)">
+      <Parameter Name="SearchQuery" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SEARCH_MEDICINES" ReturnType="Collection(SapiensInModel.SEARCH_MEDICINES_Result)">
+      <Parameter Name="SearchQuery" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SEARCH_TEAMS_DOCTORS_SPECIALITIES" ReturnType="Collection(SapiensInModel.SEARCH_TEAMS_DOCTORS_SPECIALITIES_Result)">
+      <Parameter Name="SearchQuery" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="GET_ALL_LAB_TESTS_Result">
+    <Property Type="Int32" Name="LabTestID" Nullable="false" />
+    <Property Type="String" Name="LabTestTitle" Nullable="false" MaxLength="500" />
+    <Property Type="Decimal" Name="LabTestPrice" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_ALL_LABS_Result">
+    <Property Type="Int32" Name="LabID" Nullable="false" />
+    <Property Type="String" Name="LabTitle" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+    <Property Type="Double" Name="DiscountPercentage" Nullable="false" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_ALL_MEDICINES_Result">
+    <Property Type="Int32" Name="MedicineID" Nullable="false" />
+    <Property Type="String" Name="MedicineTitle" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+    <Property Type="Decimal" Name="Price" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="Int64" Name="RowNumber" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_ALL_SPECIALITIES_Result">
+    <Property Type="Int32" Name="SpecialityID" Nullable="false" />
+    <Property Type="String" Name="SpecialityTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="DisplayPicture" Nullable="false" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_APPOINTMENT_PROCEEDINGS_Result">
+    <Property Type="Int64" Name="AppointmentProceedingID" Nullable="false" />
+    <Property Type="Int64" Name="AppointmentID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="SenderUserTypeID" Nullable="true" />
+    <Property Type="Int32" Name="ReceiverUserTypeID" Nullable="true" />
+    <Property Type="String" Name="AttachmentFileName" Nullable="true" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+    <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GET_APPOINTMENTS_FOR_DOCTOR_PROFILE_Result">
+    <Property Type="Int64" Name="AppointmentID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="TeamID" Nullable="false" />
+    <Property Type="Decimal" Name="SessionCharges" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="SessionStartDate" Nullable="false" />
+    <Property Type="String" Name="SessionStartTime" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="TeamTimeSlotID" Nullable="true" />
+    <Property Type="Boolean" Name="IsSessionEnded" Nullable="true" />
+    <Property Type="DateTime" Name="SessionEndDatetime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="SpecialityTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="DisplayPicture" Nullable="false" />
+    <Property Type="String" Name="PatientName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="PatientImage" Nullable="true" />
+    <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="PatientMobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="String" Name="BillingAddress" Nullable="true" />
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="true" />
+    <Property Type="String" Name="VoucherTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="DiscountVoucherAmount" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="DiscountVoucherPercentage" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_APPOINTMENTS_FOR_PATIENT_PROFILE_Result">
+    <Property Type="Int64" Name="AppointmentID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="TeamID" Nullable="false" />
+    <Property Type="Decimal" Name="SessionCharges" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="SessionStartDate" Nullable="false" />
+    <Property Type="String" Name="SessionStartTime" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="TeamTimeSlotID" Nullable="true" />
+    <Property Type="Boolean" Name="IsSessionEnded" Nullable="true" />
+    <Property Type="DateTime" Name="SessionEndDatetime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="SpecialityTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="DisplayPicture" Nullable="false" />
+    <Property Type="String" Name="PatientName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="PatientImage" Nullable="true" />
+    <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="PatientMobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaymentImage" Nullable="true" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="String" Name="BillingAddress" Nullable="true" />
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="true" />
+    <Property Type="String" Name="VoucherTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="DiscountVoucherAmount" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="DiscountVoucherPercentage" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_APPOINTMENTS_REPORT_Result">
+    <Property Type="Int64" Name="AppointmentID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="TeamID" Nullable="false" />
+    <Property Type="Decimal" Name="SessionCharges" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="SessionStartDate" Nullable="false" />
+    <Property Type="String" Name="SessionStartTime" Nullable="true" MaxLength="4000" />
+    <Property Type="Int32" Name="TeamTimeSlotID" Nullable="true" />
+    <Property Type="Boolean" Name="IsSessionEnded" Nullable="true" />
+    <Property Type="DateTime" Name="SessionEndDatetime" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="SpecialityTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="DisplayPicture" Nullable="false" />
+    <Property Type="String" Name="PatientName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="PatientImage" Nullable="true" />
+    <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="19" />
+    <Property Type="String" Name="PatientMobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaymentImage" Nullable="true" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="String" Name="BillingAddress" Nullable="true" />
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="true" />
+    <Property Type="String" Name="VoucherTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="DiscountVoucherAmount" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="DiscountVoucherPercentage" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_AVAILABLE_TIME_SLOTS_BY_TEAM_ID_AND_DATE_Result">
+    <Property Type="Int64" Name="TeamTimeSlotID" Nullable="false" />
+    <Property Type="Int32" Name="TeamID" Nullable="false" />
+    <Property Type="Int32" Name="DayNumber" Nullable="false" />
+    <Property Type="Time" Name="TimeSlot" Nullable="false" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_DISCOUNT_VOUCHERS_Result">
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="false" />
+    <Property Type="String" Name="VoucherTitle" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="VoucherCode" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="VoucherDecription" Nullable="true" />
+    <Property Type="String" Name="VoucherImage" Nullable="true" />
+    <Property Type="Double" Name="DiscountPercentage" Nullable="true" />
+    <Property Type="Decimal" Name="DiscountAmount" Nullable="true" Precision="19" />
+    <Property Type="Boolean" Name="IsLabApplicable" Nullable="true" />
+    <Property Type="Boolean" Name="IsMedicineApplicable" Nullable="true" />
+    <Property Type="Boolean" Name="IsAppointmentApplicable" Nullable="true" />
+    <Property Type="Boolean" Name="IsEnabled" Nullable="true" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_LATEST_APPOINTMENT_PROCEEDINGS_Result">
+    <Property Type="Int64" Name="AppointmentProceedingID" Nullable="false" />
+    <Property Type="Int64" Name="AppointmentID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="SenderUserTypeID" Nullable="true" />
+    <Property Type="Int32" Name="ReceiverUserTypeID" Nullable="true" />
+    <Property Type="String" Name="AttachmentFileName" Nullable="true" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+    <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GET_PATIENT_LAB_TEST_REPORT_Result">
+    <Property Type="Int64" Name="PatientLabTestID" Nullable="false" />
+    <Property Type="Int32" Name="LabID" Nullable="false" />
+    <Property Type="Int32" Name="LabTestID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int64" Name="AppointmentID" Nullable="true" />
+    <Property Type="Double" Name="DiscountPercentage" Nullable="false" />
+    <Property Type="Decimal" Name="LabTestPrice" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="FinalAmount" Nullable="false" Precision="19" />
+    <Property Type="String" Name="PaymentImage" Nullable="true" />
+    <Property Type="String" Name="LabResultFileAttachment" Nullable="true" />
+    <Property Type="String" Name="BillingAddress" Nullable="true" />
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="true" />
+    <Property Type="String" Name="VoucherTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="DiscountVoucherPercentage" Nullable="true" />
+    <Property Type="Decimal" Name="DiscountVoucherAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="LabTitle" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="LabLogo" Nullable="true" />
+    <Property Type="String" Name="LabTestTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="PatientName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="PatientImage" Nullable="true" />
+    <Property Type="String" Name="PatientMobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_PATIENT_LAB_TESTS_Result">
+    <Property Type="Int64" Name="PatientLabTestID" Nullable="false" />
+    <Property Type="Int32" Name="LabID" Nullable="false" />
+    <Property Type="Int32" Name="LabTestID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int64" Name="AppointmentID" Nullable="true" />
+    <Property Type="Double" Name="DiscountPercentage" Nullable="false" />
+    <Property Type="Decimal" Name="LabTestPrice" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="FinalAmount" Nullable="false" Precision="19" />
+    <Property Type="String" Name="PaymentImage" Nullable="true" />
+    <Property Type="String" Name="LabResultFileAttachment" Nullable="true" />
+    <Property Type="String" Name="BillingAddress" Nullable="true" />
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="true" />
+    <Property Type="String" Name="VoucherTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="DiscountVoucherPercentage" Nullable="true" />
+    <Property Type="Decimal" Name="DiscountVoucherAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="LabTitle" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="LabLogo" Nullable="true" />
+    <Property Type="String" Name="LabTestTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="PatientName" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="PatientImage" Nullable="true" />
+    <Property Type="String" Name="PatientMobileNumber" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GET_PATIENT_MEDICINE_DETAILS_BY_ORDER_ID_Result">
+    <Property Type="Int64" Name="PatientMedicineID" Nullable="false" />
+    <Property Type="Int64" Name="PatientMedicineOrderID" Nullable="false" />
+    <Property Type="Int32" Name="MedicineID" Nullable="false" />
+    <Property Type="Int32" Name="Quantity" Nullable="false" />
+    <Property Type="Decimal" Name="UnitPrice" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="TotalPrice" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="MedicineImage" Nullable="true" />
+    <Property Type="String" Name="MedicineTitle" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="GET_PATIENT_MEDICINE_ORDER_REPORT_Result">
+    <Property Type="Int64" Name="PatientMedicineOrderID" Nullable="false" />
+    <Property Type="String" Name="OrderNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalItems" Nullable="true" />
+    <Property Type="String" Name="PatientName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="PatientImage" Nullable="true" />
+    <Property Type="String" Name="PatientMobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaymentImage" Nullable="true" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="Boolean" Name="IsDelivered" Nullable="true" />
+    <Property Type="DateTime" Name="IsDeliveredDateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PrescriptionImage" Nullable="true" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="String" Name="BillingAddress" Nullable="true" />
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="true" />
+    <Property Type="String" Name="VoucherTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="DiscountVoucherAmount" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="DiscountVoucherPercentage" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_PATIENT_MEDICINE_ORDERS_Result">
+    <Property Type="Int64" Name="PatientMedicineOrderID" Nullable="false" />
+    <Property Type="String" Name="OrderNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="FinalAmount" Nullable="true" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="TotalItems" Nullable="true" />
+    <Property Type="String" Name="PatientName" Nullable="true" MaxLength="200" />
+    <Property Type="String" Name="PatientImage" Nullable="true" />
+    <Property Type="String" Name="PatientMobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PaymentImage" Nullable="true" />
+    <Property Type="DateTime" Name="OrderDate" Nullable="true" />
+    <Property Type="Boolean" Name="IsDelivered" Nullable="true" />
+    <Property Type="DateTime" Name="IsDeliveredDateTime" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PrescriptionImage" Nullable="true" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="String" Name="BillingAddress" Nullable="true" />
+    <Property Type="Int32" Name="DiscountVoucherID" Nullable="true" />
+    <Property Type="String" Name="VoucherTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="DiscountVoucherAmount" Nullable="true" Precision="19" />
+    <Property Type="Double" Name="DiscountVoucherPercentage" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_REV_EWS_AND_RATINGS_Result">
+    <Property Type="Int64" Name="RatingReviewID" Nullable="false" />
+    <Property Type="Double" Name="Rating" Nullable="true" />
+    <Property Type="String" Name="ReviewStatement" Nullable="true" MaxLength="1000" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="Int32" Name="TeamID" Nullable="false" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_STATISTICS_FOR_PATIENT_PROFILE_Result">
+    <Property Type="Int32" Name="TotalAppointments" Nullable="true" />
+    <Property Type="Int32" Name="TodayAppointments" Nullable="true" />
+    <Property Type="Int32" Name="TotalMedicineOrders" Nullable="true" />
+    <Property Type="Int32" Name="PendingDeliveryMedicineOrders" Nullable="true" />
+    <Property Type="Int32" Name="TotalLabTests" Nullable="true" />
+    <Property Type="Int32" Name="PendingLabTestResults" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_TEAMS_Result">
+    <Property Type="Int32" Name="TeamID" Nullable="false" />
+    <Property Type="String" Name="TeamTitle" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="SpecialityID" Nullable="false" />
+    <Property Type="Decimal" Name="SessionCharges" Nullable="false" Precision="19" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="SpecialityTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="SpecialityLogo" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+    <Property Type="String" Name="Experience" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="SatisfactionPercentage" Nullable="true" />
+    <Property Type="Int32" Name="UserTypeID" Nullable="false" />
+    <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="TeamMemberID" Nullable="false" />
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Education" Nullable="true" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="Int32" Name="ReviewsCount" Nullable="true" />
+    <Property Type="Double" Name="AverageRating" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GET_TIME_SLOTS_BY_TEAM_ID_Result">
+    <Property Type="Int64" Name="TeamTimeSlotID" Nullable="false" />
+    <Property Type="Int32" Name="TeamID" Nullable="false" />
+    <Property Type="Int32" Name="DayNumber" Nullable="false" />
+    <Property Type="Time" Name="TimeSlot" Nullable="false" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_USER_TYPES_Result">
+    <Property Type="Int64" Name="UserTypeID" Nullable="false" />
+    <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_USERS_Result">
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="UserTypeID" Nullable="false" />
+    <Property Type="Int32" Name="SpecialityID" Nullable="true" />
+    <Property Type="String" Name="Experience" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="SatisfactionPercentage" Nullable="true" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="String" Name="Education" Nullable="true" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="SpecialityTitle" Nullable="false" MaxLength="500" />
+    <Property Type="String" Name="UserTypeTitle" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="LOGIN_USER_Result">
+    <Property Type="Int64" Name="UserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="200" />
+    <Property Type="Int32" Name="UserTypeID" Nullable="false" />
+    <Property Type="Int32" Name="SpecialityID" Nullable="true" />
+    <Property Type="String" Name="Experience" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="SatisfactionPercentage" Nullable="true" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" />
+    <Property Type="String" Name="MobileNumber" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="ResidentialAddress" Nullable="true" />
+    <Property Type="String" Name="Education" Nullable="true" />
+    <Property Type="DateTime" Name="AddedDateTime" Nullable="false" Precision="23" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="String" Name="SpecialityTitle" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="SpecialityPicture" Nullable="true" />
+    <Property Type="String" Name="UserType" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SEARCH_LAB_TESTS_Result">
+    <Property Type="Int32" Name="ObjectID" Nullable="false" />
+    <Property Type="String" Name="SearchIcon" Nullable="false" MaxLength="6" />
+    <Property Type="Int32" Name="ModuleID" Nullable="false" />
+    <Property Type="String" Name="SearchResult" Nullable="false" MaxLength="546" />
+    <Property Type="String" Name="SearchQuery" Nullable="false" MaxLength="500" />
+  </ComplexType>
+  <ComplexType Name="SEARCH_MEDICINES_Result">
+    <Property Type="Int32" Name="ObjectID" Nullable="false" />
+    <Property Type="String" Name="SearchIcon" Nullable="true" />
+    <Property Type="Int32" Name="ModuleID" Nullable="false" />
+    <Property Type="String" Name="SearchResult" Nullable="false" MaxLength="246" />
+    <Property Type="String" Name="SearchQuery" Nullable="false" MaxLength="200" />
+  </ComplexType>
+  <ComplexType Name="SEARCH_TEAMS_DOCTORS_SPECIALITIES_Result">
+    <Property Type="Int32" Name="ObjectID" Nullable="true" />
+    <Property Type="String" Name="SearchIcon" Nullable="false" />
+    <Property Type="Int32" Name="ModuleID" Nullable="false" />
+    <Property Type="String" Name="SearchResult" Nullable="false" MaxLength="761" />
+    <Property Type="String" Name="SearchQuery" Nullable="true" MaxLength="200" />
+  </ComplexType>
+</Schema>

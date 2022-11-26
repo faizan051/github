@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<title>Sapiens In</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<!-- Favicons -->
+	<link href="assets/img/favicon.png" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+
+	<script src="./angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api.serviec.js"></script>
+
+	<script type="text/javascript" src="./angularjs/Controllers/Toolbar.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/PatientProfile.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/MedOrder.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Footer.Contrller.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body ng-app="app" ng-controller="PatientProfileController">
+
+
+
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<ng-include src="'./angularjs/htmlTemplates/Toolbar.html'" style="width:100%;"></ng-include>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar">
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<div class="col-md-12 col-12">
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Profile</li>
+							</ol>
+						</nav>
+						<h2 class="breadcrumb-title">Profile</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+						<!-- Profile Sidebar -->
+						<ng-include src="'./angularjs/htmlTemplates/patient-sidebar.html'" style="width:100%;">
+						</ng-include>
+						<!-- /Profile Sidebar -->
+
+					</div>
+
+					<div class="col-md-7 col-lg-8 col-xl-9" ng-controller="MedOrderController">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card dash-card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget dct-border-rht">
+													<div class="circle-bar circle-bar1">
+														<div class="circle-graph1" data-percent="75">
+															<img src="assets/img/icon-01.png" class="img-fluid"
+																alt="patient">
+														</div>
+													</div>
+													<div class="dash-widget-info">
+														<h6>Total Appointments</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalAppointments}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.TodayAppointments}} Sessions
+															Today </p>
+
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget dct-border-rht">
+													<div class="circle-bar circle-bar2">
+														<div class="circle-graph2" data-percent="65">
+															<img src="assets/img/icon-02.png" class="img-fluid"
+																alt="Patient">
+														</div>
+													</div>
+													<div class="dash-widget-info">
+														<h6>Total Lab Tests</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalLabTests}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.PendingLabTestResults}} Pending
+															Results </p>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget">
+													<div class="circle-bar circle-bar3">
+														<div class="circle-graph3" data-percent="50">
+															<img src="assets/img/icon-03.png" class="img-fluid"
+																alt="Patient">
+														</div>
+													</div>
+													<div class="dash-widget-info">
+														<h6>Medicine Orders</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalMedicineOrders}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.PendingDeliveryMedicineOrders}}
+															Pending Deliveries </p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row" ng-controller="MedOrderController">
+							<div class="col-sm-12">
+								<div class="card">
+									<div class="card-body">
+										<div class="table-responsive">
+											<table class="table table-hover table-center mb-0">
+												<thead>
+													<tr>
+
+														<th>
+															Sr. No.
+														</th>
+
+														<th>
+
+														</th>
+
+														<th>
+															Lab
+														</th>
+														<th>
+															Test
+														</th>
+
+														<th>
+															Final Amount
+														</th>
+														<th>
+															Voucher
+														</th>
+														<th>
+															Voucher Discount
+														</th>
+
+														<th>
+															Discount %
+														</th>
+														<th>
+															Reciept
+														</th>
+														<th>
+															Test result
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr ng-repeat="labtest in LabTestList">
+														<td>
+															{{$index + 1}}
+														</td>
+														<td>
+
+															<img style="height: 50px;width: 50px;"
+																ng-src="{{UserImagePath + labtest.LabLogo}}" />
+														</td>
+														<td>{{labtest.LabTitle}}</td>
+														<td>{{labtest.LabTestTitle}}</td>
+														<td>Rs.{{labtest.FinalAmount}}</td>
+														<td>{{labtest.VoucherTitle}}</td>
+
+														<td>
+															<span ng-if="labtest.DiscountVoucherAmount > 0 ">
+																Rs.{{labtest.SessionCharges}} </span>
+															<span ng-if="labtest.DiscountVoucherPercentage > 0 ">
+																{{labtest.DiscountVoucherPercentage}}% </span>
+														</td>
+														<td>{{labtest.Discount}}</td>
+														
+														<td>{{labtest.DiscountPercentage}}</td>
+														<td>
+
+															<a target="_blank"
+																ng-if="labtest.PaymentImage != 'null' && labtest.PaymentImage != null"
+																href="{{ImagePath + labtest.PaymentImage}}">Download</a>
+															<span
+																ng-if="labtest.PaymentImage == 'null' || labtest.PaymentImage == null">
+																Not available
+															</span>
+														</td>
+														<td>
+
+															<p ng-if="labtest.labtestLabResultFileAttachment != null && labtest.labtestLabResultFileAttachment != 'null'"
+																class="recommended">
+																<a target="_blank"
+																	style="border: 1px solid grey;border-radius: 10px;padding: 7px;font-size: 10px;"
+																	href="{{UserImagePath + labtest.labtestLabResultFileAttachment}}">
+																	<i class="fa fa-download" aria-hidden="true"></i>
+																	Download Attachment
+																</a>
+															</p>
+															<!-- <p class="comment-content">
+															{{ProceedingsObj.Comment}}
+														</p> -->
+															<div ng-if="labtest.labtestLabResultFileAttachment == null"
+																class="clinic-services">
+																<span
+																	style="border:none;background-color: orange;color: white;"
+																	class="ng-binding ng-scope">Pending</span>
+															</div>
+														</td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Detail Modal -->
+						<div class="modal fade" id="DetailModelDiv" aria-hidden="true" role="dialog">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Order Detail</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="card">
+											<div class="card-body">
+												<div class="table-responsive">
+													<table class="table table-hover table-center mb-0">
+														<thead>
+															<tr>
+
+																<th>
+																	Sr. No.
+																</th>
+																<th>
+																	Medicine
+																</th>
+
+																<th>
+																	Quantity
+																</th>
+																<th>
+																	Unit Price
+																</th>
+																<th>
+																	Total Price
+																</th>
+
+
+																<th>Action</th>
+
+															</tr>
+														</thead>
+														<tbody>
+															<tr ng-repeat="OrderDetailObj in OrderDetailList">
+																<td>
+																	{{$index + 1}}
+																</td>
+																<td>
+																	<h2 class="table-avatar">
+																		<a href="#" class="avatar avatar-sm mr-2">
+																			<img ng-if="MedicineObj.MedicineImage != 'null'"
+																				class="avatar-img rounded-circle"
+																				src="{{ImagePath + MedicineObj.MedicineImage}}"
+																				alt="MedicineObj Image">
+																			<img ng-if="MedicineObj.MedicineImage == 'null'"
+																				class="avatar-img rounded-circle"
+																				src="assets/img/DefaultPicture.jpg"
+																				alt="MedicineObj Image">
+																		</a>
+																		<a href="#">{{MedicineObj.MedicineTitle}}</a>
+																	</h2>
+																</td>
+
+																<td>{{MedicineObj.Quantity}}</td>
+
+																<td>{{MedicineObj.UnitPrice}}</td>
+																<td>{{MedicineObj.TotalPrice}}</td>
+
+
+
+
+
+															</tr>
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Detail Modal -->
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /Page Content -->
+
+
+
+
+		<!-- Footer -->
+		<ng-include src="'./angularjs/htmlTemplates/Footer.html'" style="width:100%;"></ng-include>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Sticky Sidebar JS -->
+	<script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+	<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+	<!-- Circle Progress JS -->
+	<script src="assets/js/circle-progress.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+
+</html>

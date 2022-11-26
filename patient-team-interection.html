@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<title>Sapiens In</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<!-- Favicons -->
+	<link href="assets/img/favicon.png" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<!-- <link href="assets/css/rateit.css" rel="stylesheet" type="text/css"> -->
+
+
+
+
+
+	<script src="./angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api.serviec.js"></script>
+
+	<script type="text/javascript" src="./angularjs/Controllers/Toolbar.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/PatientProfile.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/TeamInterection.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Footer.Contrller.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body ng-app="app" ng-controller="PatientProfileController">
+
+
+
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<ng-include src="'./angularjs/htmlTemplates/Toolbar.html'" style="width:100%;"></ng-include>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar">
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<div class="col-md-12 col-12">
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Profile</li>
+							</ol>
+						</nav>
+						<h2 class="breadcrumb-title">Profile</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+						<!-- Profile Sidebar -->
+						<ng-include src="'./angularjs/htmlTemplates/patient-sidebar.html'" style="width:100%;">
+						</ng-include>
+						<!-- /Profile Sidebar -->
+
+					</div>
+
+					<div class="col-md-7 col-lg-8 col-xl-9">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card dash-card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget dct-border-rht">
+													<div class="circle-bar circle-bar1">
+														<div class="circle-graph1" data-percent="75">
+															<img src="assets/img/icon-01.png" class="img-fluid"
+																alt="patient">
+														</div>
+													</div>
+													<div class="dash-widget-info">
+														<h6>Total Appointments</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalAppointments}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.TodayAppointments}} Sessions
+															Today </p>
+
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget dct-border-rht">
+													<div class="circle-bar circle-bar2">
+														<div class="circle-graph2" data-percent="65">
+															<img src="assets/img/icon-02.png" class="img-fluid"
+																alt="Patient">
+														</div>
+													</div>
+													<div class="dash-widget-info">
+														<h6>Total Lab Tests</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalLabTests}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.PendingLabTestResults}} Pending
+															Results </p>
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget">
+													<div class="circle-bar circle-bar3">
+														<div class="circle-graph3" data-percent="50">
+															<img src="assets/img/icon-03.png" class="img-fluid"
+																alt="Patient">
+														</div>
+													</div>
+													<div class="dash-widget-info">
+														<h6>Medicine Orders</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalMedicineOrders}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.PendingDeliveryMedicineOrders}}
+															Pending Deliveries </p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+						<div class="row">
+							<div class="col-md-12">
+
+								<!-- Doctor Details Tab -->
+								<div class="card" ng-controller="TeamInterectionController">
+									<div class="card-body pt-0">
+
+
+									 
+
+
+										<!-- Tab Menu -->
+										<nav class="user-tabs mb-4">
+											<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+												<li class="nav-item">
+													<!-- <a class="nav-link active"
+														ng-click="GetAppointmentProceedings(UserTypes.Doctor)" href="#" -->
+													<a class="nav-link active" href="#" data-toggle="tab">Appointment
+														Proceedings
+														 
+														<!-- rating -->
+														<!-- <div class="rateit" id="customer_rating" ng-click="ratingChanged()">
+														</div>
+														<br>
+														<br>
+											 
+														<button 
+															ng-click="FeedBackSelected()"
+															class="btn btn-primary submit-btn">
+																<span ng-if="IsFeedBackSelected != true"> Feedback  </span>
+																<span ng-if="IsFeedBackSelected == true"> Cancel Feedback  </span>
+														</button>
+														<br ng-if="IsFeedBackSelected == true">
+														<br ng-if="IsFeedBackSelected == true">
+														<textarea ng-if="IsFeedBackSelected == true" ng-model="FeedBackDes" rows="4" cols="70"> </textarea>
+														<br ng-if="IsFeedBackSelected == true">
+														<button ng-if="IsFeedBackSelected == true"  
+															ng-click="IsFeedBackSelected = true"
+															class="btn btn-primary submit-btn">
+																Submit Feedback
+														</button> -->
+
+													</a>
+
+
+												</li>
+												<!-- <li ng-if="UserInfo.UserTypeID != UserTypes.Patient" class="nav-item">
+													<a class="nav-link active"
+														ng-click="GetAppointmentProceedings(UserTypes.Patient)" href="#"
+														data-toggle="tab">Patient</a>
+												</li>
+												<li ng-if="UserInfo.UserTypeID == UserTypes.Patient" class="nav-item">
+													<a class="nav-link"
+														ng-click="GetAppointmentProceedings(UserTypes.Pharmacist)"
+														href="#" data-toggle="tab">Pharmacist</a>
+												</li>
+
+												<li ng-if="UserInfo.UserTypeID == UserTypes.Patient" class="nav-item">
+													<a class="nav-link"
+														ng-click="GetAppointmentProceedings(UserTypes.Nutritionist)"
+														href="#" data-toggle="tab">Nutritionist</a>
+												</li> -->
+
+
+												<!-- <li ng-if="UserInfo.UserTypeID != UserTypes.Doctor" class="nav-item">
+													<a class="nav-link active"
+														ng-click="GetAppointmentProceedings(UserTypes.Doctor)" href="#"
+														data-toggle="tab">Doctor</a>
+												</li>
+												<li ng-if="UserInfo.UserTypeID == UserTypes.Doctor" class="nav-item">
+													<a class="nav-link active"
+														ng-click="GetAppointmentProceedings(UserTypes.Patient)" href="#"
+														data-toggle="tab">Patient</a>
+												</li>
+												<li ng-if="UserInfo.UserTypeID != UserTypes.Pharmacist"  class="nav-item">
+													<a class="nav-link"
+														ng-click="GetAppointmentProceedings(UserTypes.Pharmacist)"
+														href="#" data-toggle="tab">Pharmacist</a>
+												</li>
+												<li ng-if="UserInfo.UserTypeID == UserTypes.Pharmacist"  class="nav-item">
+													<a class="nav-link"
+														ng-click="GetAppointmentProceedings(UserTypes.Patient)"
+														href="#" data-toggle="tab">Patient</a>
+												</li>
+												<li ng-if="UserInfo.UserTypeID != UserTypes.Nutritionist" class="nav-item">
+													<a class="nav-link"
+														ng-click="GetAppointmentProceedings(UserTypes.Nutritionist)"
+														href="#" data-toggle="tab">Nutritionist</a>
+												</li>
+												<li ng-if="UserInfo.UserTypeID == UserTypes.Nutritionist" class="nav-item">
+													<a class="nav-link"
+														ng-click="GetAppointmentProceedings(UserTypes.Patient)"
+														href="#" data-toggle="tab">Patient</a>
+												</li> -->
+
+											</ul>
+										</nav>
+										<!-- /Tab Menu -->
+
+										<!-- Tab Content -->
+										<div class="tab-content pt-0">
+
+											<!-- Reviews Content -->
+											<div role="tabpanel" id="Nutrionist" class="tab-pane fade show active">
+
+												<!-- Review Listing -->
+												<div class="widget review-listing">
+
+
+
+													<br>
+
+													<ul class="comments-list">
+														<!-- Comment List -->
+														<li ng-if="GetProceedingLoader == true">
+															<div class="text-center">
+																<span class="spinner-grow spinner-grow"></span>
+																Loading..
+															</div>
+														</li>
+														<li ng-if="GetProceedingLoader != true"
+															ng-repeat="ProceedingsObj in ProceedingsList">
+
+															<div class="comment">
+																<img class="avatar avatar-sm rounded-circle"
+																	ng-if="ProceedingsObj.DisplayPicture != null"
+																	alt="User Image"
+																	src="https://api.sapiensin.com/Uploads/Images/{{ProceedingsObj.DisplayPicture}}">
+																<img class="avatar avatar-sm rounded-circle"
+																	ng-if="ProceedingsObj.DisplayPicture == null"
+																	alt="User Image" src="assets/img/med.png">
+																<div class="comment-body">
+																	<div class="meta-data">
+																		<span class="comment-author">
+																			{{ProceedingsObj.Name}}
+
+																		</span>
+																		<span class="comment-date">
+																			{{ProceedingsObj.UserType}}
+
+																		</span>
+																		<!-- <span
+																			ng-if=" ProceedingsObj.SenderUserTypeID == UserTypes.Doctor"
+																			class="comment-date">
+																			<span
+																				style="padding: 5px;color: black;background: lightgreen;">
+																				{{ProceedingsObj.UserType}}
+																			</span>
+																		</span>
+																		<span
+																			ng-if=" ProceedingsObj.SenderUserTypeID == UserTypes.Patient"
+																			class="comment-date">
+																			<span
+																				style="padding: 5px;color: black;background: gray;">
+																				{{ProceedingsObj.UserType}}
+																			</span>
+																		</span>
+																		<span
+																			ng-if=" ProceedingsObj.SenderUserTypeID == UserTypes.Nutritionist"
+																			class="comment-date">
+																			<span
+																				style="padding: 5px;color: black;background: lightseagreen;">
+																				{{ProceedingsObj.UserType}}
+																			</span>
+																		</span>
+																		<span
+																			ng-if=" ProceedingsObj.SenderUserTypeID == UserTypes.Pharmacist"
+																			class="comment-date">
+
+																			<span
+																				style="padding: 5px;color: black;background: lightblue;">
+																				{{ProceedingsObj.UserType}}
+																			</span>
+																		</span> -->
+
+																		<span class="comment-date">
+
+																			{{ProceedingsObj.AddedDateTime |
+																			date:'yyyy-MM-dd HH:mm'}}
+																		</span>
+																		<!-- <div class="review-count rating">
+																			<i class="fas fa-star filled"></i>
+																			<i class="fas fa-star filled"></i>
+																			<i class="fas fa-star filled"></i>
+																			<i class="fas fa-star filled"></i>
+																			<i class="fas fa-star"></i>
+																		</div> -->
+																	</div>
+
+																	<p ng-if="ProceedingsObj.AttachmentFileName != null && ProceedingsObj.AttachmentFileName != 'null'"
+																		class="recommended">
+																		<a target="_blank"
+																			style="border: 1px solid grey;border-radius: 10px;padding: 7px;"
+																			href="https://api.sapiensin.com/Uploads/Images/{{ProceedingsObj.AttachmentFileName}}">
+																			<i class="fa fa-download"
+																				aria-hidden="true"></i>
+																			Download Attachment
+																		</a>
+																	</p>
+																	<p class="comment-content">
+																		{{ProceedingsObj.Comment}}
+																	</p>
+																	<!-- <div class="comment-reply">
+																		  <a class="comment-btn" href="#">
+																			<i class="fas fa-reply"></i> Reply
+																		</a>  
+																		<p class="recommend-btn">
+																			<span>Recommend?</span>
+																			<a href="#" class="like-btn">
+																				<i class="far fa-thumbs-up"></i> Yes
+																			</a>
+																			<a href="#" class="dislike-btn">
+																				<i class="far fa-thumbs-down"></i> No
+																			</a>
+																		</p>
+																	</div> -->
+																</div>
+															</div>
+														</li>
+														<!-- /Comment List -->
+													</ul>
+													<br>
+													<br>
+													<hr>
+													<div class="form-group">
+														<label>Send Messages/Files</label>
+														<input class="form-control" type="text"
+															ng-model="ProceedingComment"
+															placeholder="Enter Your Text here">
+													</div>
+													<!-- <div ng-if="selectedFilename != null">
+														File: {{selectedFilename}}
+													</div> -->
+													<br>
+													<div class="input-group-prepend">
+
+														<div class="btn-file btn">
+															<i class="fa fa-paperclip"></i>
+															<small style="margin-left:10px"> PDF,Video </small>
+															<input style="cursor: pointer;" type="file"
+																onchange="angular.element(this).scope().uploadpic(this)">
+														</div>
+
+
+													</div>
+													<br>
+													<b>Allowed Files Formats</b> <small>
+														{{FileUploadConstants.FormatsMsg}} </small>
+													<br>
+													<b>Allowed File Size</b> <small> {{FileUploadConstants.Size}}Mb
+													</small>
+													<br>
+													<div ng-if="selectedFilename != null">
+														<b> Uploaded File: </b>
+														<span style="color: green;"> {{selectedFilename}}
+														</span>
+													</div>
+													<br>
+
+													<!-- <div class="form-group">
+														<label>Image</label>
+														<input type="file"
+															onchange="angular.element(this).scope().uploadpic(this)"
+															id="image" class="form-control">
+													</div> -->
+													<br>
+
+													<div class="submit-section">
+														<!-- <i  class="fa fa-file-photo-o"></i> -->
+														<button ng-disabled="Loader == true"
+															ng-click="AddOrUpdateProceeding()"
+															class="btn btn-primary submit-btn">
+
+															<span ng-if="Loader == true">
+																<span class="spinner-grow spinner-grow-sm"></span>
+																Loading..
+															</span>
+															<span ng-if="Loader != true">
+																Send Message
+															</span>
+														</button>
+
+
+														<!-- <button ng-click="AddOrUpdateProceeding()"
+															class="btn btn-primary submit-btn">Add
+															Review</button> -->
+													</div>
+
+													<!-- Show All -->
+													<!-- <div class="all-feedback text-center">
+														<a href="#" class="btn btn-primary btn-sm">
+															Show all feedback <strong>(167)</strong>
+														</a>
+													</div> -->
+													<!-- /Show All -->
+
+												</div>
+												<!-- /Review Listing -->
+
+
+
+											</div>
+											<!-- /Reviews Content -->
+
+
+
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Details Tab -->
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<ng-include src="'./angularjs/htmlTemplates/Footer.html'" style="width:100%;"></ng-include>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery.min.js"></script>
+	<!-- <script src="assets/js/jquery.rateit.min.js"></script> -->
+	
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Sticky Sidebar JS -->
+	<script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+	<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+	<!-- Circle Progress JS -->
+	<script src="assets/js/circle-progress.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+
+
+</body>
+
+
+</html>

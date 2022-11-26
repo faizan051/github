@@ -1,0 +1,194 @@
+ <!-- <script type="text/javascript" src="../Controllers/Toolbar.Contrller.js"></script> -->
+<!-- <script type="text/javascript" src="../Controllers/Toolbar.Contrller.js"></script> -->
+<script src="../../assets/js/chatfun.js"></script>
+
+<header class="header" ng-controller="ToolbarController">
+<style>
+		#fixed {
+			position: fixed !important;
+			top: 0px !important;
+
+		}
+
+		.fixedElement {
+			position: fixed !important;
+			bottom: 0px !important;
+			right: 0px !important;
+			z-index: 1;
+		}
+
+		#checkOut {
+			display: none;
+		}
+
+		@media only screen and (max-width: 991px) {
+			#checkOut {
+				display: block;
+			}
+		}
+	</style>
+
+	<nav style="position: fixed !important;
+	top: 0px !important; width: 100%;  z-index: 1;" id="fixed" class="navbar navbar-expand-lg header-nav">
+		<div class="navbar-header">
+			<a id="mobile_btn" href="javascript:void(0);">
+				<span class="bar-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</a>
+			<a href="index.html" class="navbar-brand logo">
+				<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+			</a>
+		</div>
+		<div class="main-menu-wrapper">
+			<div class="menu-header">
+				<a href="index.html" class="menu-logo">
+					<img src="assets/img/logo-small.png" class="img-fluid" alt="Logo">
+				</a>
+				<!-- <a style="color: #72bed9;" ng-if="UserInfo == null" class="nav-link header-login" href="login.html"> <b> Login  </b> </a>
+				<a style="color: #72bed9;" ng-if="UserInfo != null" ng-click="LogOut('index')" class="nav-link header-login" href="#"> <b> Logout  </b> </a> -->
+				<a id="menu_close" class="menu-close" href="javascript:void(0);">
+					<i class="fas fa-times"></i>
+				</a>
+			</div>
+			<ul class="main-nav">
+				<!-- <li>
+					<a href="index.html">Home</a>
+				</li> -->
+				<li>
+				 
+					<a ng-click="GoToModule('team')" href="#">Teams</a>
+				</li>
+				<li>
+					<a ng-click="GoToModule('labs')" href="#">Labs</a>
+				</li>
+				<li>
+					<a ng-click="GoToModule('med')" href="#">Medicines</a>
+				</li>
+
+				<li>
+					<a ng-click="GoToModule('')" href="Doc.html">Doctors</a>
+				</li>
+			
+				<li ng-if="UserInfo != null">
+					<a ng-click="GoToModule('patient-profile')" href="#">Profile</a>
+				</li>
+				<li ng-if="UserInfo != null">
+					<a ng-click="GoToModule('patient-profile')" href="#">Appointment</a>
+				</li>
+				
+				
+				<li  class="d-block d-sm-none">
+					<a  ng-if="UserInfo == null" class="nav-link header-login" href="login.html">login  </a>
+					<a  ng-if="UserInfo != null" ng-click="LogOut('index')" class="dropdown-item" href="#">Logout</a>
+				</li>
+				<li   class="d-block d-sm-none">
+					<a class="nav-link header-login" href="tel:0324-6228527">Contact Us: 0324-6228527  </a>
+				</li>
+				
+	
+
+			</ul>
+		</div>
+		<ul class="nav header-navbar-rht">
+			<li class="nav-item contact-item">
+				<div ng-if="HtmlFilename == 'med.html' || HtmlFilename == 'labs.html' " ng-click="GoToCheckOut()"
+					class="header-contact-img" style="margin-right: 30px;">
+					<a class="nav-link header-login" href="#">
+						<b> CheckOut </b>
+						<i style="cursor: pointer;" class="fa fa-shopping-cart"></i>
+						<span ng-if="CartItemList.length > 0"
+							style="padding-right: 28px;">{{CartItemList.length}}</span>
+					</a>
+					<!-- <h3 style="cursor: pointer;color: lightseagreen;" ng-if="CartItemList.length > 0" style="padding-right: 28px;">CheckOut</h3> -->
+				</div>
+				<!-- <div ng-if="HtmlFilename == 'med.html' || HtmlFilename == 'labs.html' "  ng-click="GoToCheckOut()" class="header-contact-img" style="margin-right: 30px;">
+					<i style="cursor: pointer;" class="fa fa-shopping-cart"></i>
+					<span ng-if="CartItemList.length > 0" style="padding-right: 28px;">{{CartItemList.length}}</span>
+				</div> -->
+				
+				<div class="header-contact-img">
+					<i class="far fa-hospital"></i>
+				</div>
+				<div class="header-contact-detail">
+					<p class="contact-header">Contact</p>
+					<p class="contact-info-header"><a href="tel: 0324-6228527"> 0324-6228527</a></p>
+				</div>
+			</li>
+
+			<li ng-if="UserInfo == null" class="nav-item contact-item">
+				<a class="nav-link header-login" href="login.html">login  </a>
+			</li>
+
+			<!-- User Menu -->
+			<li ng-if="UserInfo != null" class="nav-item dropdown has-arrow logged-item">
+
+
+
+
+
+				<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+					<span class="user-img">
+						<img ng-if="UserInfo.DisplayPicture == null" class="rounded-circle" src="assets/img/user.png"
+							width="31">
+						<img ng-if="UserInfo.DisplayPicture != null" class="rounded-circle"
+							src="https://api.sapiensin.com/Uploads/Images/{{UserInfo.DisplayPicture}}" width="31">
+					</span>
+				</a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<div class="user-header">
+						<div class="avatar avatar-sm">
+
+							<img ng-if="UserInfo.DisplayPicture == null" class="avatar-img rounded-circle"
+								src="assets/img/user.png">
+							<img ng-if="UserInfo.DisplayPicture != null" class="avatar-img rounded-circle"
+								src="https://api.sapiensin.com/Uploads/Images/{{UserInfo.DisplayPicture}}">
+						</div>
+						<div class="user-text">
+							<h6>{{UserInfo.Name}}</h6>
+							<p class="text-muted mb-0">{{UserInfo.UserType}}</p>
+						</div>
+					</div>
+					<!-- <a class="dropdown-item" href="doctor-dashboard.html">Dashboard</a> -->
+					<!-- <a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a> -->
+					<a ng-click="LogOut('index')" class="dropdown-item" href="#">Logout</a>
+				</div>
+			</li>
+			<!-- /User Menu -->
+
+
+			<li class="nav-item dropdown has-arrow">
+
+
+				<div ng-if="UserInfo != null" class="dropdown-menu">
+					<div class="user-header">
+						<div class="avatar avatar-sm">
+							<img ng-if="UserInfo.DisplayPicture == null" src="assets/img/user.png" alt="User Image"
+								class="avatar-img rounded-circle">
+							<img ng-if="UserInfo.DisplayPicture != null"
+								src="https://api.sapiensin.com/Uploads/Images/{{UserInfo.DisplayPicture}}"
+								alt="User Image" class="avatar-img rounded-circle">
+						</div>
+						<div class="user-text">
+							<h6>{{UserInfo.Name}}</h6>
+							<!-- <p class="text-muted mb-0">{{UserInfo.okokokok}}</p> -->
+						</div>
+					</div>
+					<a class="dropdown-item" ng-click="LogOut('index')" href="">Logout</a>
+				</div>
+			</li>
+			<!-- <li class="nav-item">
+				 
+				<a ng-if="UserInfo == null" class="nav-link header-login" href="admin/login.html">login / Signup </a>
+				<a ng-click="LogOut('index')" ng-if="UserInfo != null" class="nav-link header-login" href="#">LogOut </a>
+			</li> -->
+		</ul>
+	</nav>
+	<a ng-if="HtmlFilename == 'med.html' || HtmlFilename == 'labs.html' " id="checkOut" ng-click="GoToCheckOut()" class="btn btn-primary fixedElement" href="#">
+		<b> CheckOut </b>
+		<i style="cursor: pointer;" class="fa fa-shopping-cart"></i>
+		<span ng-if="CartItemList.length > 0" style="padding-right: 28px;">{{CartItemList.length}}</span>
+	</a>
+</header>

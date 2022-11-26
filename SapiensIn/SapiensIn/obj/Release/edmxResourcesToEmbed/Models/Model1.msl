@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SapiensInModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="Appointment_Proceedings">
+      <EntityTypeMapping TypeName="SapiensInModel.Appointment_Proceedings">
+        <MappingFragment StoreEntitySet="Appointment_Proceedings">
+          <ScalarProperty Name="AppointmentProceedingID" ColumnName="AppointmentProceedingID" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SenderUserTypeID" ColumnName="SenderUserTypeID" />
+          <ScalarProperty Name="ReceiverUserTypeID" ColumnName="ReceiverUserTypeID" />
+          <ScalarProperty Name="AttachmentFileName" ColumnName="AttachmentFileName" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscountVouchers">
+      <EntityTypeMapping TypeName="SapiensInModel.DiscountVouchers">
+        <MappingFragment StoreEntitySet="DiscountVouchers">
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+          <ScalarProperty Name="VoucherDecription" ColumnName="VoucherDecription" />
+          <ScalarProperty Name="VoucherImage" ColumnName="VoucherImage" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="IsLabApplicable" ColumnName="IsLabApplicable" />
+          <ScalarProperty Name="IsMedicineApplicable" ColumnName="IsMedicineApplicable" />
+          <ScalarProperty Name="IsAppointmentApplicable" ColumnName="IsAppointmentApplicable" />
+          <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Labs">
+      <EntityTypeMapping TypeName="SapiensInModel.Labs">
+        <MappingFragment StoreEntitySet="Labs">
+          <ScalarProperty Name="LabID" ColumnName="LabID" />
+          <ScalarProperty Name="LabTitle" ColumnName="LabTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabTests">
+      <EntityTypeMapping TypeName="SapiensInModel.LabTests">
+        <MappingFragment StoreEntitySet="LabTests">
+          <ScalarProperty Name="LabTestID" ColumnName="LabTestID" />
+          <ScalarProperty Name="LabTestTitle" ColumnName="LabTestTitle" />
+          <ScalarProperty Name="LabTestPrice" ColumnName="LabTestPrice" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medicines">
+      <EntityTypeMapping TypeName="SapiensInModel.Medicines">
+        <MappingFragment StoreEntitySet="Medicines">
+          <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+          <ScalarProperty Name="MedicineTitle" ColumnName="MedicineTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Appointments">
+      <EntityTypeMapping TypeName="SapiensInModel.Patient_Appointments">
+        <MappingFragment StoreEntitySet="Patient_Appointments">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="SessionCharges" ColumnName="SessionCharges" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="SessionStartDate" ColumnName="SessionStartDate" />
+          <ScalarProperty Name="SessionStartTime" ColumnName="SessionStartTime" />
+          <ScalarProperty Name="TeamTimeSlotID" ColumnName="TeamTimeSlotID" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="IsSessionEnded" ColumnName="IsSessionEnded" />
+          <ScalarProperty Name="SessionEndDatetime" ColumnName="SessionEndDatetime" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_LabTests">
+      <EntityTypeMapping TypeName="SapiensInModel.Patient_LabTests">
+        <MappingFragment StoreEntitySet="Patient_LabTests">
+          <ScalarProperty Name="PatientLabTestID" ColumnName="PatientLabTestID" />
+          <ScalarProperty Name="LabID" ColumnName="LabID" />
+          <ScalarProperty Name="LabTestID" ColumnName="LabTestID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="LabTestPrice" ColumnName="LabTestPrice" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="LabResultFileAttachment" ColumnName="LabResultFileAttachment" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_MedicineOrder">
+      <EntityTypeMapping TypeName="SapiensInModel.Patient_MedicineOrder">
+        <MappingFragment StoreEntitySet="Patient_MedicineOrder">
+          <ScalarProperty Name="PatientMedicineOrderID" ColumnName="PatientMedicineOrderID" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="PrescriptionImage" ColumnName="PrescriptionImage" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="IsDelivered" ColumnName="IsDelivered" />
+          <ScalarProperty Name="IsDeliveredDateTime" ColumnName="IsDeliveredDateTime" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Patient_Medicines">
+      <EntityTypeMapping TypeName="SapiensInModel.Patient_Medicines">
+        <MappingFragment StoreEntitySet="Patient_Medicines">
+          <ScalarProperty Name="PatientMedicineID" ColumnName="PatientMedicineID" />
+          <ScalarProperty Name="PatientMedicineOrderID" ColumnName="PatientMedicineOrderID" />
+          <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RatingAndReviews">
+      <EntityTypeMapping TypeName="SapiensInModel.RatingAndReviews">
+        <MappingFragment StoreEntitySet="RatingAndReviews">
+          <ScalarProperty Name="RatingReviewID" ColumnName="RatingReviewID" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ReviewStatement" ColumnName="ReviewStatement" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specialities">
+      <EntityTypeMapping TypeName="SapiensInModel.Specialities">
+        <MappingFragment StoreEntitySet="Specialities">
+          <ScalarProperty Name="SpecialityID" ColumnName="SpecialityID" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Team_TimeSlots">
+      <EntityTypeMapping TypeName="SapiensInModel.Team_TimeSlots">
+        <MappingFragment StoreEntitySet="Team_TimeSlots">
+          <ScalarProperty Name="TeamTimeSlotID" ColumnName="TeamTimeSlotID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="DayNumber" ColumnName="DayNumber" />
+          <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamMembers">
+      <EntityTypeMapping TypeName="SapiensInModel.TeamMembers">
+        <MappingFragment StoreEntitySet="TeamMembers">
+          <ScalarProperty Name="TeamMemberID" ColumnName="TeamMemberID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teams">
+      <EntityTypeMapping TypeName="SapiensInModel.Teams">
+        <MappingFragment StoreEntitySet="Teams">
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamTitle" ColumnName="TeamTitle" />
+          <ScalarProperty Name="SpecialityID" ColumnName="SpecialityID" />
+          <ScalarProperty Name="SessionCharges" ColumnName="SessionCharges" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SapiensInModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="SpecialityID" ColumnName="SpecialityID" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="SatisfactionPercentage" ColumnName="SatisfactionPercentage" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="SapiensInModel.UserTypes">
+        <MappingFragment StoreEntitySet="UserTypes">
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="f_HELPER_PROCEDURE_CLEAN_DB" FunctionName="SapiensInModel.Store.f_HELPER_PROCEDURE_CLEAN_DB" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_DISCOUNT_VOUCHERS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_DISCOUNT_VOUCHERS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_LAB_TESTS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_LAB_TESTS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_LABS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_LABS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_MEDICINES" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_MEDICINES" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_PATIENT_APPOINTMENT_PROCEEDINGS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_PATIENT_APPOINTMENT_PROCEEDINGS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_PATIENT_APPOINTMENTS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_PATIENT_APPOINTMENTS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_PATIENT_LAB_TESTS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_PATIENT_LAB_TESTS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_PATIENT_MEDICINE_ORDER" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_PATIENT_MEDICINE_ORDER" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_PATIENT_MEDICINE_ORDER_DETAILS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_PATIENT_MEDICINE_ORDER_DETAILS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_RATING_AND_REVIEW" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_RATING_AND_REVIEW" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_SPECIALITIES" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_SPECIALITIES" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_TEAM_MEMBERS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_TEAM_MEMBERS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_TEAM_TIME_SLOTS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_TEAM_TIME_SLOTS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_TEAMS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_TEAMS" />
+    <FunctionImportMapping FunctionImportName="ADD_OR_UPDATE_USERS" FunctionName="SapiensInModel.Store.ADD_OR_UPDATE_USERS" />
+    <FunctionImportMapping FunctionImportName="CHECK_MOBILE_NUMBER_FOR_ACCOUNT_CREATION" FunctionName="SapiensInModel.Store.CHECK_MOBILE_NUMBER_FOR_ACCOUNT_CREATION" />
+    <FunctionImportMapping FunctionImportName="GET_ALL_LAB_TESTS" FunctionName="SapiensInModel.Store.GET_ALL_LAB_TESTS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_ALL_LAB_TESTS_Result">
+          <ScalarProperty Name="LabTestID" ColumnName="LabTestID" />
+          <ScalarProperty Name="LabTestTitle" ColumnName="LabTestTitle" />
+          <ScalarProperty Name="LabTestPrice" ColumnName="LabTestPrice" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_ALL_LABS" FunctionName="SapiensInModel.Store.GET_ALL_LABS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_ALL_LABS_Result">
+          <ScalarProperty Name="LabID" ColumnName="LabID" />
+          <ScalarProperty Name="LabTitle" ColumnName="LabTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_ALL_MEDICINES" FunctionName="SapiensInModel.Store.GET_ALL_MEDICINES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_ALL_MEDICINES_Result">
+          <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+          <ScalarProperty Name="MedicineTitle" ColumnName="MedicineTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_ALL_SPECIALITIES" FunctionName="SapiensInModel.Store.GET_ALL_SPECIALITIES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_ALL_SPECIALITIES_Result">
+          <ScalarProperty Name="SpecialityID" ColumnName="SpecialityID" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_APPOINTMENT_PROCEEDINGS" FunctionName="SapiensInModel.Store.GET_APPOINTMENT_PROCEEDINGS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_APPOINTMENT_PROCEEDINGS_Result">
+          <ScalarProperty Name="AppointmentProceedingID" ColumnName="AppointmentProceedingID" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SenderUserTypeID" ColumnName="SenderUserTypeID" />
+          <ScalarProperty Name="ReceiverUserTypeID" ColumnName="ReceiverUserTypeID" />
+          <ScalarProperty Name="AttachmentFileName" ColumnName="AttachmentFileName" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_APPOINTMENTS_FOR_DOCTOR_PROFILE" FunctionName="SapiensInModel.Store.GET_APPOINTMENTS_FOR_DOCTOR_PROFILE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_APPOINTMENTS_FOR_DOCTOR_PROFILE_Result">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="SessionCharges" ColumnName="SessionCharges" />
+          <ScalarProperty Name="SessionStartDate" ColumnName="SessionStartDate" />
+          <ScalarProperty Name="SessionStartTime" ColumnName="SessionStartTime" />
+          <ScalarProperty Name="TeamTimeSlotID" ColumnName="TeamTimeSlotID" />
+          <ScalarProperty Name="IsSessionEnded" ColumnName="IsSessionEnded" />
+          <ScalarProperty Name="SessionEndDatetime" ColumnName="SessionEndDatetime" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="PatientMobileNumber" ColumnName="PatientMobileNumber" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_APPOINTMENTS_FOR_PATIENT_PROFILE" FunctionName="SapiensInModel.Store.GET_APPOINTMENTS_FOR_PATIENT_PROFILE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_APPOINTMENTS_FOR_PATIENT_PROFILE_Result">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="SessionCharges" ColumnName="SessionCharges" />
+          <ScalarProperty Name="SessionStartDate" ColumnName="SessionStartDate" />
+          <ScalarProperty Name="SessionStartTime" ColumnName="SessionStartTime" />
+          <ScalarProperty Name="TeamTimeSlotID" ColumnName="TeamTimeSlotID" />
+          <ScalarProperty Name="IsSessionEnded" ColumnName="IsSessionEnded" />
+          <ScalarProperty Name="SessionEndDatetime" ColumnName="SessionEndDatetime" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="PatientMobileNumber" ColumnName="PatientMobileNumber" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_APPOINTMENTS_REPORT" FunctionName="SapiensInModel.Store.GET_APPOINTMENTS_REPORT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_APPOINTMENTS_REPORT_Result">
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="SessionCharges" ColumnName="SessionCharges" />
+          <ScalarProperty Name="SessionStartDate" ColumnName="SessionStartDate" />
+          <ScalarProperty Name="SessionStartTime" ColumnName="SessionStartTime" />
+          <ScalarProperty Name="TeamTimeSlotID" ColumnName="TeamTimeSlotID" />
+          <ScalarProperty Name="IsSessionEnded" ColumnName="IsSessionEnded" />
+          <ScalarProperty Name="SessionEndDatetime" ColumnName="SessionEndDatetime" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="PatientMobileNumber" ColumnName="PatientMobileNumber" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_AVAILABLE_TIME_SLOTS_BY_TEAM_ID_AND_DATE" FunctionName="SapiensInModel.Store.GET_AVAILABLE_TIME_SLOTS_BY_TEAM_ID_AND_DATE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_AVAILABLE_TIME_SLOTS_BY_TEAM_ID_AND_DATE_Result">
+          <ScalarProperty Name="TeamTimeSlotID" ColumnName="TeamTimeSlotID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="DayNumber" ColumnName="DayNumber" />
+          <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_DISCOUNT_VOUCHERS" FunctionName="SapiensInModel.Store.GET_DISCOUNT_VOUCHERS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_DISCOUNT_VOUCHERS_Result">
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+          <ScalarProperty Name="VoucherDecription" ColumnName="VoucherDecription" />
+          <ScalarProperty Name="VoucherImage" ColumnName="VoucherImage" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="IsLabApplicable" ColumnName="IsLabApplicable" />
+          <ScalarProperty Name="IsMedicineApplicable" ColumnName="IsMedicineApplicable" />
+          <ScalarProperty Name="IsAppointmentApplicable" ColumnName="IsAppointmentApplicable" />
+          <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LATEST_APPOINTMENT_PROCEEDINGS" FunctionName="SapiensInModel.Store.GET_LATEST_APPOINTMENT_PROCEEDINGS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_LATEST_APPOINTMENT_PROCEEDINGS_Result">
+          <ScalarProperty Name="AppointmentProceedingID" ColumnName="AppointmentProceedingID" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="SenderUserTypeID" ColumnName="SenderUserTypeID" />
+          <ScalarProperty Name="ReceiverUserTypeID" ColumnName="ReceiverUserTypeID" />
+          <ScalarProperty Name="AttachmentFileName" ColumnName="AttachmentFileName" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_PATIENT_LAB_TEST_REPORT" FunctionName="SapiensInModel.Store.GET_PATIENT_LAB_TEST_REPORT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_PATIENT_LAB_TEST_REPORT_Result">
+          <ScalarProperty Name="PatientLabTestID" ColumnName="PatientLabTestID" />
+          <ScalarProperty Name="LabID" ColumnName="LabID" />
+          <ScalarProperty Name="LabTestID" ColumnName="LabTestID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="LabTestPrice" ColumnName="LabTestPrice" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="LabResultFileAttachment" ColumnName="LabResultFileAttachment" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LabTitle" ColumnName="LabTitle" />
+          <ScalarProperty Name="LabLogo" ColumnName="LabLogo" />
+          <ScalarProperty Name="LabTestTitle" ColumnName="LabTestTitle" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+          <ScalarProperty Name="PatientMobileNumber" ColumnName="PatientMobileNumber" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_PATIENT_LAB_TESTS" FunctionName="SapiensInModel.Store.GET_PATIENT_LAB_TESTS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_PATIENT_LAB_TESTS_Result">
+          <ScalarProperty Name="PatientLabTestID" ColumnName="PatientLabTestID" />
+          <ScalarProperty Name="LabID" ColumnName="LabID" />
+          <ScalarProperty Name="LabTestID" ColumnName="LabTestID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AppointmentID" ColumnName="AppointmentID" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="LabTestPrice" ColumnName="LabTestPrice" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="LabResultFileAttachment" ColumnName="LabResultFileAttachment" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LabTitle" ColumnName="LabTitle" />
+          <ScalarProperty Name="LabLogo" ColumnName="LabLogo" />
+          <ScalarProperty Name="LabTestTitle" ColumnName="LabTestTitle" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+          <ScalarProperty Name="PatientMobileNumber" ColumnName="PatientMobileNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_PATIENT_MEDICINE_DETAILS_BY_ORDER_ID" FunctionName="SapiensInModel.Store.GET_PATIENT_MEDICINE_DETAILS_BY_ORDER_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_PATIENT_MEDICINE_DETAILS_BY_ORDER_ID_Result">
+          <ScalarProperty Name="PatientMedicineID" ColumnName="PatientMedicineID" />
+          <ScalarProperty Name="PatientMedicineOrderID" ColumnName="PatientMedicineOrderID" />
+          <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="MedicineImage" ColumnName="MedicineImage" />
+          <ScalarProperty Name="MedicineTitle" ColumnName="MedicineTitle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_PATIENT_MEDICINE_ORDER_REPORT" FunctionName="SapiensInModel.Store.GET_PATIENT_MEDICINE_ORDER_REPORT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_PATIENT_MEDICINE_ORDER_REPORT_Result">
+          <ScalarProperty Name="PatientMedicineOrderID" ColumnName="PatientMedicineOrderID" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="TotalItems" ColumnName="TotalItems" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+          <ScalarProperty Name="PatientMobileNumber" ColumnName="PatientMobileNumber" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="IsDelivered" ColumnName="IsDelivered" />
+          <ScalarProperty Name="IsDeliveredDateTime" ColumnName="IsDeliveredDateTime" />
+          <ScalarProperty Name="PrescriptionImage" ColumnName="PrescriptionImage" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_PATIENT_MEDICINE_ORDERS" FunctionName="SapiensInModel.Store.GET_PATIENT_MEDICINE_ORDERS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_PATIENT_MEDICINE_ORDERS_Result">
+          <ScalarProperty Name="PatientMedicineOrderID" ColumnName="PatientMedicineOrderID" />
+          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+          <ScalarProperty Name="FinalAmount" ColumnName="FinalAmount" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="TotalItems" ColumnName="TotalItems" />
+          <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+          <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+          <ScalarProperty Name="PatientMobileNumber" ColumnName="PatientMobileNumber" />
+          <ScalarProperty Name="PaymentImage" ColumnName="PaymentImage" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="IsDelivered" ColumnName="IsDelivered" />
+          <ScalarProperty Name="IsDeliveredDateTime" ColumnName="IsDeliveredDateTime" />
+          <ScalarProperty Name="PrescriptionImage" ColumnName="PrescriptionImage" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="BillingAddress" ColumnName="BillingAddress" />
+          <ScalarProperty Name="DiscountVoucherID" ColumnName="DiscountVoucherID" />
+          <ScalarProperty Name="VoucherTitle" ColumnName="VoucherTitle" />
+          <ScalarProperty Name="DiscountVoucherAmount" ColumnName="DiscountVoucherAmount" />
+          <ScalarProperty Name="DiscountVoucherPercentage" ColumnName="DiscountVoucherPercentage" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_REV_EWS_AND_RATINGS" FunctionName="SapiensInModel.Store.GET_REV_EWS_AND_RATINGS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_REV_EWS_AND_RATINGS_Result">
+          <ScalarProperty Name="RatingReviewID" ColumnName="RatingReviewID" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ReviewStatement" ColumnName="ReviewStatement" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_STATISTICS_FOR_PATIENT_PROFILE" FunctionName="SapiensInModel.Store.GET_STATISTICS_FOR_PATIENT_PROFILE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_STATISTICS_FOR_PATIENT_PROFILE_Result">
+          <ScalarProperty Name="TotalAppointments" ColumnName="TotalAppointments" />
+          <ScalarProperty Name="TodayAppointments" ColumnName="TodayAppointments" />
+          <ScalarProperty Name="TotalMedicineOrders" ColumnName="TotalMedicineOrders" />
+          <ScalarProperty Name="PendingDeliveryMedicineOrders" ColumnName="PendingDeliveryMedicineOrders" />
+          <ScalarProperty Name="TotalLabTests" ColumnName="TotalLabTests" />
+          <ScalarProperty Name="PendingLabTestResults" ColumnName="PendingLabTestResults" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_TEAMS" FunctionName="SapiensInModel.Store.GET_TEAMS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_TEAMS_Result">
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="TeamTitle" ColumnName="TeamTitle" />
+          <ScalarProperty Name="SpecialityID" ColumnName="SpecialityID" />
+          <ScalarProperty Name="SessionCharges" ColumnName="SessionCharges" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="SpecialityLogo" ColumnName="SpecialityLogo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="SatisfactionPercentage" ColumnName="SatisfactionPercentage" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="TeamMemberID" ColumnName="TeamMemberID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="ReviewsCount" ColumnName="ReviewsCount" />
+          <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_TIME_SLOTS_BY_TEAM_ID" FunctionName="SapiensInModel.Store.GET_TIME_SLOTS_BY_TEAM_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_TIME_SLOTS_BY_TEAM_ID_Result">
+          <ScalarProperty Name="TeamTimeSlotID" ColumnName="TeamTimeSlotID" />
+          <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+          <ScalarProperty Name="DayNumber" ColumnName="DayNumber" />
+          <ScalarProperty Name="TimeSlot" ColumnName="TimeSlot" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_USER_TYPES" FunctionName="SapiensInModel.Store.GET_USER_TYPES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_USER_TYPES_Result">
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_USERS" FunctionName="SapiensInModel.Store.GET_USERS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.GET_USERS_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="SpecialityID" ColumnName="SpecialityID" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="SatisfactionPercentage" ColumnName="SatisfactionPercentage" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="UserTypeTitle" ColumnName="UserTypeTitle" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LOGIN_USER" FunctionName="SapiensInModel.Store.LOGIN_USER">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.LOGIN_USER_Result">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="SpecialityID" ColumnName="SpecialityID" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="SatisfactionPercentage" ColumnName="SatisfactionPercentage" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ResidentialAddress" ColumnName="ResidentialAddress" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="AddedDateTime" ColumnName="AddedDateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="SpecialityTitle" ColumnName="SpecialityTitle" />
+          <ScalarProperty Name="SpecialityPicture" ColumnName="SpecialityPicture" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MARK_PATIENT_MEDICINE_ORDER_AS_DELIVERED" FunctionName="SapiensInModel.Store.MARK_PATIENT_MEDICINE_ORDER_AS_DELIVERED" />
+    <FunctionImportMapping FunctionImportName="SEARCH_LAB_TESTS" FunctionName="SapiensInModel.Store.SEARCH_LAB_TESTS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.SEARCH_LAB_TESTS_Result">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="SearchIcon" ColumnName="SearchIcon" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="SearchResult" ColumnName="SearchResult" />
+          <ScalarProperty Name="SearchQuery" ColumnName="SearchQuery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SEARCH_MEDICINES" FunctionName="SapiensInModel.Store.SEARCH_MEDICINES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.SEARCH_MEDICINES_Result">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="SearchIcon" ColumnName="SearchIcon" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="SearchResult" ColumnName="SearchResult" />
+          <ScalarProperty Name="SearchQuery" ColumnName="SearchQuery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SEARCH_TEAMS_DOCTORS_SPECIALITIES" FunctionName="SapiensInModel.Store.SEARCH_TEAMS_DOCTORS_SPECIALITIES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SapiensInModel.SEARCH_TEAMS_DOCTORS_SPECIALITIES_Result">
+          <ScalarProperty Name="ObjectID" ColumnName="ObjectID" />
+          <ScalarProperty Name="SearchIcon" ColumnName="SearchIcon" />
+          <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+          <ScalarProperty Name="SearchResult" ColumnName="SearchResult" />
+          <ScalarProperty Name="SearchQuery" ColumnName="SearchQuery" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

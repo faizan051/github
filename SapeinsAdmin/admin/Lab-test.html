@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>Sapiens In</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Feathericon CSS -->
+	<link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="../angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/Auth.Contrller.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/LabTest.Contrller.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="LabTestController">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div ng-include="'../angularjs/htmlTemplates/header-menu.html'"></div>
+		<!-- /Header -->
+
+
+		<!-- Sidebar -->
+		<div ng-include="'../angularjs/htmlTemplates/sidebar.html'"></div>
+		<!-- /Sidebar -->
+
+		<!-- Page Wrapper -->
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+
+				<!-- Page Header -->
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-7 col-auto">
+							<h3 class="page-title">Labs and Lab Tests</h3>
+							<!-- <ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+								<li class="breadcrumb-item active">Specialities</li>
+							</ul> -->
+						</div>
+						<div class="col-sm-5 col">
+							<!-- <a href="#Add_doctor_details" data-toggle="modal"
+								class="btn btn-primary float-right mt-2">Add</a> -->
+							<button ng-click="AddUpdateModel(null,false)" class="btn btn-primary float-right mt-2">
+								Add Labs
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<!-- /Page Header -->
+				<div class="col-md-7 col-lg-8 col-xl-9">
+
+					<div class="row row-grid">
+						<div ng-repeat="lab in LabList" class="col-md-6 col-lg-4 col-xl-3">
+							<div class="card widget-profile pat-widget-profile">
+								<div class="card-body">
+									<div class="pro-widget-content">
+										<div class="profile-info-widget">
+											<a href="patient-profile.html" class="booking-doc-img">
+												<img style="height: 100%;width: 100%;"
+													src="{{PicBaseURL + lab.DisplayPicture}}" alt="User Image">
+											</a>
+											<div class="profile-det-info">
+												<h3 style="text-align: center;"><a
+														href="patient-profile.html">{{lab.LabTitle}}</a></h3>
+												<h3 style="text-align: center;"><a
+														href="#">Discount: {{lab.DiscountPercentage}}%</a></h3>
+
+												<div class="patient-details">
+													<button ng-click="AddUpdateModel(lab,true)"
+														class="btn btn-sm btn-primary">
+														Update
+													</button>
+
+													<button ng-click="DeleteLab(lab,null)"
+														class="btn btn-sm bg-danger-light">
+														<i class="fe fe-trash"></i> Delete
+													</button>
+
+
+													<!-- <h5><b>Patient ID :</b> P0016</h5>
+													<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Alabama, USA
+													</h5> -->
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="patient-info">
+										<ul>
+											<li>Phone <span>+1 952 001 8563</span></li>
+											<li>Age <span>38 Years, Male</span></li>
+											<li>Blood Group <span>AB+</span></li>
+										</ul>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- Page Header -->
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-7 col-auto">
+							<h3 class="page-title">Tests</h3>
+							<!-- <ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+									<li class="breadcrumb-item active">Specialities</li>
+								</ul> -->
+						</div>
+						<div class="col-sm-5 col">
+							<!-- <a href="#Add_doctor_details" data-toggle="modal"
+									class="btn btn-primary float-right mt-2">Add</a> -->
+							<button ng-click="AddUpdateLabTestModel(null,false)"
+								class="btn btn-primary float-right mt-2">
+								Add lab test
+							</button>
+
+						</div>
+					</div>
+				</div>
+				<!-- /Page Header -->
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover table-center mb-0">
+										<thead>
+											<tr>
+
+
+												<!-- "Name": "sample string 2",
+    "UserTypeID": 3,
+    "SpecialityID": 1,
+    "Experience": "sample string 4",
+    "SatisfactionPercentage": 1.1,
+    "DisplayPicture": "sample string 5",
+    "MobileNumber": "sample string 6",
+    "Password": "sample string 7",
+    "AddedDateTime": "2022-04-26T14:18:02.4951091+05:00",
+    "Status": true,
+    "SessionCharges": 1.0,
+    "SpecialityTitle": "sample string 10",
+    "UserTypeTitle": "sample string 11" -->
+
+
+												<!-- <th>Doctor Name</th>
+												<th>Speciality</th>
+												<th>Member Since</th>
+												<th>Earned</th>
+												<th>Account Status</th> -->
+
+												<th>
+													Test
+												</th>
+
+												<th>Price</th>
+
+												<th>Action</th>
+
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="test in LabTestsList">
+
+												<td>
+													{{test.LabTestTitle}}
+												</td>
+												<td>
+													{{test.LabTestPrice}}
+												</td>
+
+												<td>
+													<button ng-click="AddUpdateLabTestModel(test,true)"
+														class="btn btn-sm btn-primary">
+														Update
+													</button>
+
+													<button ng-click="DeleteLabTests(test,null)"
+														class="btn btn-sm bg-danger-light">
+														<i class="fe fe-trash"></i> Delete
+													</button>
+												</td>
+
+												<!-- <td>$3100.00</td>
+
+												<td>
+													<div class="status-toggle">
+														<input type="checkbox" id="status_1" class="check" checked>
+														<label for="status_1" class="checktoggle">checkbox</label>
+													</div>
+												</td> -->
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /Page Wrapper -->
+
+		<!-- Delete Modal -->
+		<div class="modal fade" id="delete_LAB_modal" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<!--	<div class="modal-header">
+							<h5 class="modal-title">Delete</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>-->
+					<div class="modal-body">
+						<div class="form-content p-2">
+							<h4 class="modal-title">Delete</h4>
+							<p class="mb-4">Are you sure want to delete?</p>
+							<button ng-click="DeleteLab(selectedLabObj,true)" type="button" class="btn btn-primary">Save
+							</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Delete Modal -->
+
+		<!-- Add Lab Modal -->
+		<div class="modal fade" id="Add_Lab" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add Lab</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form ng-submit="AddOrUpdateLabs()" name="contactForm">
+							<div class="row form-row">
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Title</label>
+										<input type="text" required ng-model="Labs.LabTitle" class="form-control">
+									</div>
+								</div>
+
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Discount Percentage</label>
+										<input type="number" max="100" required ng-model="Labs.DiscountPercentage"
+											class="form-control">
+									</div>
+								</div>
+
+								<!-- <div class="col-12 col-sm-6">
+							<label>Speciality</label>
+							<div class="form-group">
+								<select required ng-model="UserObj.SpecialityID" class="form-control">
+									<option>-- Select --</option>
+									<option ng-repeat="Speciality in Specialities "
+										ng-value="Speciality.SpecialityID">{{Speciality.SpecialityTitle}}
+									</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6">
+							<div class="form-group">
+								<label>Experience</label>
+								<input required type="text" ng-model="UserObj.Experience" class="form-control">
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6">
+							<div class="form-group">
+								<label>MobileNumber</label>
+								<input required type="number" ng-model="UserObj.MobileNumber"
+									class="form-control">
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-6">
+							<div class="form-group">
+								<label>Password</label>
+								<input required type="password" ng-model="UserObj.Password"
+									class="form-control">
+							</div>
+						</div> -->
+
+
+
+
+
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Image</label>
+										<input type="file" onchange="angular.element(this).scope().uploadpic(this)"
+											id="image" class="form-control">
+									</div>
+								</div>
+
+								<img ng-if="src != null" style="display: block;
+							margin-left: auto;
+							margin-right: auto;
+							width: 50%;" ng-src="{{src}}">
+
+								<img ng-if="IsEdit == true && src == null" style="display: block;
+							margin-left: auto;
+							margin-right: auto;
+							width: 50%;" ng-src="{{PicBaseURL + Labs.DisplayPicture}}">
+							</div>
+
+
+
+							<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /ADD Lab Modal -->
+
+
+		<!-- Delete Modal -->
+		<div class="modal fade" id="delete_lab_test_modal" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<!--	<div class="modal-header">
+										<h5 class="modal-title">Delete</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>-->
+					<div class="modal-body">
+						<div class="form-content p-2">
+							<h4 class="modal-title">Delete</h4>
+							<p class="mb-4">Are you sure want to delete?</p>
+							<button ng-click="DeleteLabTests(selectedLabTestsObj,true)" type="button"
+								class="btn btn-primary">Save </button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Delete Modal -->
+
+		<!-- Add Lab Test Modal -->
+		<div class="modal fade" id="Add_Lab_Test_Details" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Add lab test</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form ng-submit="AddOrUpdateLabTest()" name="contactForm">
+							<div class="row form-row">
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Test name</label>
+										<input type="text" required ng-model="LabTests.LabTestTitle"
+											class="form-control">
+									</div>
+								</div>
+
+
+
+								<div class="col-12 col-sm-6">
+									<div class="form-group">
+										<label>Price</label>
+										<input required type="number" ng-model="LabTests.LabTestPrice"
+											class="form-control">
+									</div>
+								</div>
+
+								<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /ADD Lab Test Modal -->
+
+
+
+
+
+
+
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery-3.2.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Datatables JS -->
+	<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="assets/plugins/datatables/datatables.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+</html>

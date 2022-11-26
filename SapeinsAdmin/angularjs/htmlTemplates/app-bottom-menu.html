@@ -1,0 +1,53 @@
+ <!-- App Bottom Menu -->
+ <!-- <script type="text/javascript" src="../Controllers/app-bottom.Contrller.js"></script> -->
+
+ <div ng-controller="AppBottomController" class="appBottomMenu" >
+ <!-- <div class="appBottomMenu" > -->
+    <a id="dashboard" href="dashboard.html" class="item bottomMenu active">
+        <div class="col">
+            <ion-icon name="pie-chart-outline"></ion-icon>
+            <strong>Overview</strong>
+        </div>
+    </a>
+    <!-- <a href="app-users.html" class="item bottomMenu"> -->
+    <a id="student"  ng-click="GoToUsers(2)" href="#"  class="item bottomMenu">
+        <div class="col">
+            <ion-icon name="document-text-outline"></ion-icon>
+            <strong>Student</strong>
+        </div>
+    </a>
+    <a  href="#" class="item bottomMenu">
+        <div class="col" onclick="closeToastBox()">
+
+            <ion-icon name="caret-down-outline"></ion-icon>
+            <!-- <strong>Components</strong> -->
+        </div>
+    </a>
+    <!-- <a ng-click="redirect('app-users.html?u=3')" href="" class="item bottomMenu"> -->
+    <a id="Staff"  ng-click="GoToUsers(3)" href="#" class="item bottomMenu">
+        <div class="col">
+            <ion-icon name="card-outline"></ion-icon>
+            <strong>Staff</strong>
+        </div>
+    </a>
+    <a id="settings"  href="app-settings.html" class="item bottomMenu">
+        <div class="col">
+            <ion-icon name="settings-outline"></ion-icon>
+            <strong>Settings</strong>
+        </div>
+    </a>
+</div>
+<!-- * App Bottom Menu -->
+
+<script>
+    $(function () {
+        if(localStorage.getItem('userTypeId') == '2'){
+            document.getElementById('staff').className +="active";
+        }
+        
+    });
+
+  
+</script>
+
+

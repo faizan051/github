@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>Medicine Orders</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Feathericon CSS -->
+	<link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="../angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/Auth.Contrller.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/MedOrders.Contrller.js"></script>
+	<script type="text/javascript" src="/admin/assets/js/moment.js"></script>
+
+
+</head>
+
+<body ng-app="app" ng-controller="MedicineOrdersController">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div ng-include="'../angularjs/htmlTemplates/header-menu.html'"></div>
+		<!-- /Header -->
+
+
+		<!-- Sidebar -->
+		<div ng-include="'../angularjs/htmlTemplates/sidebar.html'"></div>
+		<!-- /Sidebar -->
+
+		<!-- Page Wrapper -->
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+				<!-- Page Header -->
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-7 col-auto">
+							<h3 class="page-title">Medicine orders</h3>
+						</div>
+						<div class="col-sm-5 col">
+							<!-- <a class="btn btn-primary float-right mt-2" href="Add-teams.html">
+								Add
+							</a> -->
+							<!-- <button class="btn btn-primary float-right mt-2" ng-click="Addteams()">
+								Add
+							</button> -->
+						</div>
+					</div>
+				</div>
+				<!-- /Page Header -->
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+
+							<div style="margin: 5px;" class="row">
+								<div class="col-xl-6">
+									Start date :<input class="form-control" type="date" ng-model="startDate" />
+								</div>
+
+								<div class="col-xl-5">
+									End date :<input class="form-control" type="date" ng-model="endDate" />
+								</div>
+
+								<!-- <div class="col-xl-3">
+									Select Lab :<select class="form-control" ng-model="Selectedlab">
+										<option ng-value="lab.LabID" ng-repeat="lab in LabList">
+											{{lab.LabTitle}}
+										</option>
+									</select>
+								</div>
+
+								<div class="col-xl-2">
+									Select Lab Test <select class="form-control" ng-model="SelectedlabTest">
+										<option ng-value="labtest.LabTestID" ng-repeat="labtest in LabTestsList">
+											{{labtest.LabTestTitle}}
+										</option>
+									</select>
+								</div> -->
+
+								<div class="col-xl-1">
+									<button class="btn btn-primary float-right mt-2"
+										ng-click="GetMedicineOrdersReport(startDate,endDate)">
+										Submit
+									</button>
+								</div>
+
+							</div>
+							<div class="card-body">
+
+								<div class="table-responsive">
+									<table class="table table-hover table-center mb-0">
+										<thead>
+											<tr>
+
+												<th>
+													Sr. No.
+												</th>
+
+												<th>
+													Order No.
+												</th>
+
+												<th>
+													Patient
+												</th>
+
+												<th>
+													Total Items
+												</th>
+												<th>
+													Voucher value
+												</th>
+												<th>
+													Voucher
+												</th>
+												<th>
+													Paid Amount
+												</th>
+
+												<th>
+													Order Date
+												</th>
+
+
+
+												<th>
+													Added Date
+												</th>
+												<th>
+													Status
+												</th>
+
+												<!-- <th>
+													Receipt
+												</th> -->
+
+												<th>
+													Prescription
+												</th>
+												<th>
+													Details
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="med in MedicineList">
+												<td>
+													{{$index + 1}}
+												</td>
+
+												<td>
+													{{med.OrderNumber}} {{med.PatientMedicineOrderID}}
+												</td>
+
+												<td>
+													<h2 class="table-avatar">
+														<a href="#" class="avatar avatar-sm mr-2">
+															<img ng-if="med.PatientImage != 'null'"
+																class="avatar-img rounded-circle"
+																src="{{ImagePath + med.PatientImage}}" alt="med Image">
+															<img ng-if="med.PatientImage == 'null'"
+																class="avatar-img rounded-circle"
+																src="assets/img/med.png" alt="med Image">
+														</a>
+														<a href="#">{{med.PatientName}} (Ph:
+															{{med.PatientMobileNumber}})</a>
+
+													</h2>
+
+
+												</td>
+
+												<td>
+													{{med.TotalItems}}
+												</td>
+
+												<td>
+													<span ng-if="med.DiscountVoucherAmount > 0">
+														{{med.DiscountVoucherAmount}}
+													</span>
+
+													<span ng-if="med.DiscountVoucherPercentage > 0">
+														{{med.DiscountVoucherPercentage}}%
+													</span>
+
+													<span ng-if="med.DiscountVoucherID == null">
+														N/A
+													</span>
+												</td>
+
+												<td>
+													<span ng-if="med.VoucherTitle != null">
+														{{med.VoucherTitle}}
+													</span>
+													<span ng-if="med.VoucherTitle == null">
+														N/A
+													</span>
+												</td>
+
+												<td ng-init="calculateTotals(med.FinalAmount)">
+													Rs.{{med.FinalAmount |number}}
+												</td>
+
+												<td>
+													{{med.OrderDate | date}}
+												</td>
+
+
+
+												<td>
+													{{med.AddedDateTime | date}}
+												</td>
+
+												<td>
+
+													<span style="    padding: 5px;
+													background-color: orange;
+													margin: 10PX;
+													COLOR: WHITE;" ng-if="med.IsDelivered == false || med.IsDelivered == null ">
+														Pending
+													</span>
+
+													<span style="    padding: 5px;
+													background-color: green;
+													margin: 10PX;
+													COLOR: white;" ng-if="med.IsDelivered == true">
+														Delivered
+													</span>
+
+													<button ng-if="med.IsDelivered == false || med.IsDelivered == null "
+														class="btn btn-primary"
+														ng-click="MarkMedicineOrderAsDelivered(med)">
+														Mark As Delivered
+													</button>
+
+												</td>
+
+
+
+												</td>
+
+
+												<!-- <td>
+													<p ng-if="med.PaymentImage != null && med.PaymentImage != 'null'"
+														class="recommended">
+														<a target="_blank"
+															style="border: 1px solid grey;border-radius: 10px;padding: 7px;font-size: 13px;"
+															href="{{ImagePath + med.PaymentImage}}">
+															<i class="fa fa-download" aria-hidden="true"></i>
+															Download Receipt
+														</a>
+													</p>
+													<p ng-if="med.PaymentImage == null">
+														N/A
+													</p>
+												</td> -->
+
+												<td>
+													<p ng-if="med.PrescriptionImage != null && med.PrescriptionImage != 'null'"
+														class="recommended">
+														<a target="_blank"
+															style="border: 1px solid grey;border-radius: 10px;padding: 7px;font-size: 13px;"
+															href="{{ImagePath + med.PrescriptionImage}}">
+															<i class="fa fa-download" aria-hidden="true"></i>
+															Download Prescription
+														</a>
+													</p>
+													<p ng-if="med.PrescriptionImage == null">
+														N/A
+													</p>
+												</td>
+
+												<td>
+													<button class="btn btn-primary"
+														ng-click="PatientDetails_modal(med)">
+														Details
+													</button>
+												</td>
+
+											</tr>
+
+											<tr ng-if="MedicineList.length > 0">
+												<td>
+													TOTAL
+												</td>
+
+												<td>
+
+												</td>
+
+												<td>
+
+												</td>
+												<td>
+
+												</td>
+
+												<td>
+
+												</td>
+
+
+												<td>
+
+												</td>
+												<td>
+													Rs.{{TotalAmount |number}}
+												</td>
+
+												<td>
+
+												</td>
+
+												<td>
+
+												</td>
+
+												<td>
+
+												</td>
+
+												<td>
+
+												</td>
+
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<!-- /Page Wrapper -->
+
+
+			<!-- Add Modal -->
+			<div class="modal fade" id="Add_User_details" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Select
+								<span ng-if="users.Doctor == SelectedUserTypeID"> doctor</span>
+								<span ng-if="users.Pharmacist == SelectedUserTypeID"> pharmacist</span>
+								<span ng-if="users.Nutritionist == SelectedUserTypeID"> nutritionist</span>
+							</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="table-responsive">
+								<table class="table table-hover table-center mb-0">
+									<thead>
+										<tr>
+
+											<th>
+												Name
+											</th>
+
+											<th>
+												Speciality
+											</th>
+											<th>
+												Experience
+											</th>
+											<th>
+												Contact
+											</th>
+
+											<th>Member Since</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-click="SetSelecteduser(user)" ng-repeat="user in Users">
+											<td>
+												<h2 class="table-avatar">
+													<a href="#" class="avatar avatar-sm mr-2">
+														<img ng-if="user.DisplayPicture != 'null'"
+															class="avatar-img rounded-circle"
+															src="{{PicBaseURL + user.DisplayPicture}}" alt="User Image">
+														<img ng-if="user.DisplayPicture == 'null'"
+															class="avatar-img rounded-circle"
+															src="assets/img/DefaultPicture.jpg" alt="User Image">
+													</a>
+													<a href="#">{{user.Name}}</a>
+												</h2>
+											</td>
+											<td>
+												{{user.SpecialityTitle}}
+											</td>
+											<td>{{user.Experience}}</td>
+											<td>{{user.MobileNumber}}</td>
+											<td>{{user.AddedDateTime |date}} <br>
+											</td>
+
+
+										</tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /ADD Modal -->
+
+			<!-- Delete Modal -->
+			<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<!--	<div class="modal-header">
+								<h5 class="modal-title">Delete</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>-->
+						<div class="modal-body">
+							<div class="form-content p-2">
+								<h4 class="modal-title">Delete</h4>
+								<p class="mb-4">Are you sure want to delete?</p>
+								<button ng-click="DeleteSpeciality(selectedSpecialityObj,true)" type="button"
+									class="btn btn-primary">Save </button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Delete Modal -->
+
+
+			<div class="modal fade" id="PatientDetails_modal" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Details</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="form-content p-2">
+								<!-- <h4 class="modal-title">Details</h4> -->
+
+								<style>
+									.Mtable {
+										border: 1px solid black;
+									}
+
+									.Mtable td {
+										border: 1px solid black;
+									}
+								</style>
+								<table style="width: 100%" class="Mtable">
+									<!-- <thead>
+										<tr>
+											<th>
+												Name
+											</th>
+
+
+										</tr>
+									</thead> -->
+									<tbody>
+										<tr class="Mtable">
+											<td>Name</td>
+											<td>{{SelectedObj.PatientName}}</td>
+										</tr>
+
+										<tr class="Mtable">
+											<td>Contact</td>
+											<td>{{SelectedObj.PatientMobileNumber}}</td>
+										</tr>
+
+										<tr class="Mtable">
+											<td>Address</td>
+											<td>{{SelectedObj.ResidentialAddress}}</td>
+										</tr>
+
+										<tr class="Mtable">
+											<td>Billing Address</td>
+											<td>{{SelectedObj.BillingAddress}}</td>
+										</tr>
+
+
+									</tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<!-- Upload result Modal -->
+			<div class="modal fade" id="upload_result_modal" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<!--	<div class="modal-header">
+								<h5 class="modal-title">Delete</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>-->
+						<div class="modal-body">
+							<div class="form-content p-2">
+								<h4 class="modal-title">Upload result</h4>
+								<!-- <p class="mb-4">select file to ?</p> -->
+
+								<div class="form-group">
+									<label>Image</label>
+									<input type="file" onchange="angular.element(this).scope().uploadpic(this)"
+										id="image" class="form-control">
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Delete Modal -->
+
+
+		</div>
+		<!-- /Main Wrapper -->
+
+		<!-- jQuery -->
+		<script src="assets/js/jquery-3.2.1.min.js"></script>
+
+		<!-- Bootstrap Core JS -->
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- Slimscroll JS -->
+		<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+		<!-- Datatables JS -->
+		<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="assets/plugins/datatables/datatables.min.js"></script>
+
+		<!-- Custom JS -->
+		<script src="assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+</html>

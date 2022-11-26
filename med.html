@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<title>Meds</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<!-- Favicons -->
+	<link href="assets/img/favicon.png" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="./angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Med.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Toolbar.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Footer.Contrller.js"></script>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body ng-app="app" ng-controller="MedController">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<ng-include src="'./angularjs/htmlTemplates/Toolbar.html'" style="width:100%;"></ng-include>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<!-- <div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">My Patients</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">My Patients</h2>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container-fluid">
+
+				<div class="row">
+
+					
+
+					<!-- <a id="fixedbutton" href="#head">as</a> -->
+					<!-- </div> -->
+					<!-- <div class="col-md-7 col-lg-8 col-xl-9"> -->
+					<div style="width: 100%;" class="">
+						<h1 style="text-align: center;"> Medicines </h1>
+						<div class="form-group card-label" style="width: 50%;margin-left: 25%;">
+							<label>Search Medicines</label>
+							<input placeholder="search more than 3000+ medicines " 
+								class="form-control" type="text">
+						</div>
+						<br>
+						<div style="margin: 0  10%;" class="row row-grid">
+							<!-- <div ng-repeat="MedObj in MedList" class="col-md-6 col-lg-4 col-xl-3"> -->
+
+							<div ng-repeat="MedObj in MedList | filter : MedSearchQuery"
+								class="col-md-6 col-lg-4 col-xl-3">
+								<div style="border: 1px solid grey;margin-left:10px"
+									class="card widget-profile pat-widget-profile">
+									<div class="card-body">
+										<div class="pro-widget-content">
+											<div class="profile-info-widget">
+												<a href="#" class="booking-doc-img">
+													<img ng-if="MedObj.DisplayPicture != 'null'"
+														src="http://173.212.252.86:8051/Uploads/Images/{{MedObj.DisplayPicture}}"
+														alt="User Image">
+													<img ng-if="MedObj.DisplayPicture == 'null'"
+														src="assets/img/med.png" alt="User Image">
+												</a>
+												<div class="profile-det-info">
+													<h3><a href="#">{{MedObj.MedicineTitle}}</a></h3>
+													<div class="patient-details">
+														<h5><b>Price:</b> {{MedObj.Price}}</h5>
+														<h5 ng-init="MedObj.Quantity = 1"
+															ng-if="MedObj.IsAddedToCart == true"><b>Quantity:</b>
+															<i ng-click="updateItemQuantity(MedObj,true)"
+																style="cursor: pointer;color: green;font-size: 20px;"
+																class="fa fa-plus-circle"></i>
+															<b style="margin: 0 5px;font-size: 20px">{{MedObj.Quantity}}
+															</b>
+															<i ng-click="updateItemQuantity(MedObj,false)"
+																style="cursor: pointer;color: red;font-size: 20px;"
+																class="fa fa-minus-circle"></i>
+														</h5>
+														<h5  class="btn btn-primary"
+															style="cursor: pointer;color: white; "
+															ng-if="MedObj.IsAddedToCart != true; "
+															ng-click="MedObj.IsAddedToCart = true;addToCart(MedObj,true)">
+															<b>Add To Cart</b>
+														</h5>
+														<h5 class="btn btn-danger" style="cursor: pointer;color: white;"
+															ng-if="MedObj.IsAddedToCart == true"
+															ng-click="MedObj.IsAddedToCart = false;addToCart(MedObj,false)">
+															<b>Remove</b>
+														</h5>
+
+														<!-- <h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Alabama, USA</h5> -->
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <button ng-click="GetAllMedicines(false,null)" class="btn btn-sm btn-primary">
+							See more
+						</button> -->
+
+						<p ng-click="GetAllMedicines(false,null)"
+							style="text-align: center;color:#09e5ab;cursor: pointer;">
+							See more
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /Page Content -->
+
+
+
+
+		<!-- Footer -->
+		<ng-include src="'./angularjs/htmlTemplates/Footer.html'" style="width:100%;"></ng-include>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Sticky Sidebar JS -->
+	<script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+	<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+
+</html>

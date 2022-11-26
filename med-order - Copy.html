@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>Sapiens In</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+	<!-- Feathericon CSS -->
+	<link rel="stylesheet" href="assets/css/feathericon.min.css">
+
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="assets/plugins/datatables/datatables.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="../angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Services/api.serviec.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/Auth.Contrller.js"></script>
+	<script type="text/javascript" src="../angularjs/Controllers/MedOrder.Contrller.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="MedOrderController">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<div ng-include="'../angularjs/htmlTemplates/header-menu.html'"></div>
+		<!-- /Header -->
+
+
+		<!-- Sidebar -->
+		<div ng-include="'../angularjs/htmlTemplates/sidebar.html'"></div>
+		<!-- /Sidebar -->
+
+		<!-- Page Wrapper -->
+		<div class="page-wrapper">
+			<div class="content container-fluid">
+
+				<!-- Page Header -->
+				<div class="page-header">
+					<div class="row">
+						<div class="col-sm-7 col-auto">
+							<h3 class="page-title">Medicines Orders</h3>
+							<!-- <ul class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+								<li class="breadcrumb-item active">Specialities</li>
+							</ul> -->
+
+							<!-- <select  ng-change="GetAllUsers(SelectedUser)" ng-model="SelectedUser" class="form-control">
+								 
+								<option  ng- ng-repeat="usertype in UserType " ng-value="usertype.UserTypeID">
+									{{usertype.UserType}}
+								</option>
+							</select> -->
+						</div>
+						<div class="col-sm-5 col">
+							<!-- <a href="#Add_doctor_details" data-toggle="modal"
+								class="btn btn-primary float-right mt-2">Add</a> -->
+							<!-- <button ng-click="DetailModel(null,false)" class="btn btn-primary float-right mt-2">
+								Add
+							</button> -->
+
+						</div>
+					</div>
+				</div>
+				<!-- /Page Header -->
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover table-center mb-0">
+										<thead>
+											<tr>
+
+												<th>
+													Sr. No.
+												</th>
+												<th>
+													Order No.
+												</th>
+
+												<th>
+													Amount
+												</th>
+												<th>
+													Items Count
+												</th>
+												<th>
+													Order Date
+												</th>
+												 
+
+												<th>Action</th>
+
+											</tr>
+										</thead>
+										<tbody>   
+											<tr ng-repeat="MedicineObj in MedicineList">
+												<!-- <td>
+													<h2 class="table-avatar">
+														<a href="profile.html" class="avatar avatar-sm mr-2">
+															<img ng-if="MedicineObj.DisplayPicture != 'null'"
+																class="avatar-img rounded-circle"
+																src="{{PicBaseURL + MedicineObj.DisplayPicture}}"
+																alt="MedicineObj Image">
+															<img ng-if="MedicineObj.DisplayPicture == 'null'"
+																class="avatar-img rounded-circle"
+																src="assets/img/DefaultPicture.jpg" alt="MedicineObj Image">
+														</a>
+														<a href="profile.html">{{MedicineObj.Name}}</a>
+													</h2>
+												</td> -->
+												<td>
+													{{$index + 1}}
+												</td>
+												<td>{{MedicineObj.OrderNumber}}</td>
+
+												<td>{{MedicineObj.FinalAmount}}</td>
+												<td>{{MedicineObj.TotalItems}}</td>
+												<!-- <td>{{MedicineObj.SessionCharges}}</td> -->
+												<td>{{MedicineObj.AddedDateTime |date}} <br>
+													<!-- <small>02.59 AM</small> -->
+												</td>
+
+												<td>
+
+													<button ng-click="DetailModel(MedicineObj)"
+														class="btn btn-sm btn-primary">
+														Detail
+													</button>
+													 
+												</td>
+
+												 
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /Page Wrapper -->
+
+
+		<!-- Add Modal -->
+		<div class="modal fade" id="DetailModelDiv" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Order Detail</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover table-center mb-0">
+										<thead>
+											<tr>
+
+												<th>
+													Sr. No.
+												</th>
+												<th>
+													Medicine
+												</th>
+
+												<th>
+													Quantity
+												</th>
+												<th>
+													Unit Price
+												</th>
+												<th>
+													Total Price
+												</th>
+												 
+
+												<th>Action</th>
+
+											</tr>
+										</thead>
+										<tbody>   
+											<tr ng-repeat="OrderDetailObj in OrderDetailList">
+												<td>
+													{{$index + 1}}
+												</td>
+												<td>
+													<h2 class="table-avatar">
+														<a href="#" class="avatar avatar-sm mr-2">
+															<img ng-if="MedicineObj.MedicineImage != 'null'"
+																class="avatar-img rounded-circle"
+																src="{{ImagePath + MedicineObj.MedicineImage}}"
+																alt="MedicineObj Image">
+															<img ng-if="MedicineObj.MedicineImage == 'null'"
+																class="avatar-img rounded-circle"
+																src="assets/img/DefaultPicture.jpg" alt="MedicineObj Image">
+														</a>
+														<a href="#">{{MedicineObj.MedicineTitle}}</a>
+													</h2>
+												</td>
+												
+												<td>{{MedicineObj.Quantity}}</td>
+
+												<td>{{MedicineObj.UnitPrice}}</td>
+												<td>{{MedicineObj.TotalPrice}}</td>
+												 
+
+												 
+
+												 
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /ADD Modal -->
+
+		<!-- Delete Modal -->
+		<div class="modal fade" id="delete_modal" aria-hidden="true" role="dialog">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<!--	<div class="modal-header">
+								<h5 class="modal-title">Delete</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>-->
+					<div class="modal-body">
+						<div class="form-content p-2">
+							<h4 class="modal-title">Delete</h4>
+							<p class="mb-4">Are you sure want to delete?</p>
+							<button ng-click="DeleteUser(selectedUserObj,true)" type="button"
+								class="btn btn-primary">Save </button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Delete Modal -->
+
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery-3.2.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+	<!-- Datatables JS -->
+	<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="assets/plugins/datatables/datatables.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/doctor-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:51 GMT -->
+
+</html>

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<title>Sapiens In</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<!-- Favicons -->
+	<link href="assets/img/favicon.png" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="assets/css/rateit.css" rel="stylesheet" type="text/css">
+
+
+	<script src="./angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api.serviec.js"></script>
+
+	<script type="text/javascript" src="./angularjs/Controllers/Toolbar.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/PatientProfile.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Footer.Contrller.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body ng-app="app" ng-controller="PatientProfileController">
+
+
+
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<ng-include src="'./angularjs/htmlTemplates/Toolbar.html'" style="width:100%;"></ng-include>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar">
+			<div class="container-fluid">
+				<div class="row align-items-center">
+					<div class="col-md-12 col-12">
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Profile</li>
+							</ol>
+						</nav>
+						<h2 class="breadcrumb-title">Profile</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+						<!-- Profile Sidebar -->
+						<ng-include src="'./angularjs/htmlTemplates/patient-sidebar.html'" style="width:100%;">
+						</ng-include>
+						<!-- /Profile Sidebar -->
+
+					</div>
+
+					<div class="col-md-7 col-lg-8 col-xl-9">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card dash-card">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget dct-border-rht">
+													<div class="circle-bar circle-bar1">
+														<div class="circle-graph1" data-percent="75">
+															<img src="assets/img/icon-01.png" class="img-fluid"
+																alt="patient">
+														</div>
+													</div>
+													<div ng-if="UserInfo.UserTypeID == UserTypes.Patient"
+														class="dash-widget-info">
+														<h6>Total Appointments</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalAppointments}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.TodayAppointments}} Sessions
+															Today </p>
+
+													</div>
+													<div ng-if="UserInfo.UserTypeID != UserTypes.Patient"
+														class="dash-widget-info">
+														<h6>Total Appointments</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalAppointments}}</h3>
+
+
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget dct-border-rht">
+													<div class="circle-bar circle-bar2">
+														<div class="circle-graph2" data-percent="65">
+															<img src="assets/img/icon-02.png" class="img-fluid"
+																alt="Patient">
+														</div>
+													</div>
+													<div ng-if="UserInfo.UserTypeID == UserTypes.Patient"
+														class="dash-widget-info">
+														<h6>Total Lab Tests</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalLabTests}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.PendingLabTestResults}} Pending
+															Results </p>
+													</div>
+													<div ng-if="UserInfo.UserTypeID != UserTypes.Patient"
+														class="dash-widget-info">
+														<h6>Sessions Today</h6>
+														<h3>{{PatientInfoObj.MainCounts.SessionsToday}}</h3>
+
+													</div>
+												</div>
+											</div>
+
+											<div class="col-md-12 col-lg-4">
+												<div class="dash-widget">
+													<div class="circle-bar circle-bar3">
+														<div class="circle-graph3" data-percent="50">
+															<img src="assets/img/icon-03.png" class="img-fluid"
+																alt="Patient">
+														</div>
+													</div>
+													<div ng-if="UserInfo.UserTypeID == UserTypes.Patient"
+														class="dash-widget-info">
+														<h6>Medicine Orders</h6>
+														<h3>{{PatientInfoObj.MainCounts.TotalMedicineOrders}}</h3>
+														<p class="text-muted">
+															{{PatientInfoObj.MainCounts.PendingDeliveryMedicineOrders}}
+															Pending Deliveries </p>
+													</div>
+													<div ng-if="UserInfo.UserTypeID != UserTypes.Patient"
+														class="dash-widget-info">
+														<h6>Upcoming Sessions</h6>
+														<h3>{{PatientInfoObj.MainCounts.UpcomingSessions}}</h3>
+
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-12">
+								<h4 class="mb-4">Patient Appoinment</h4>
+								<div class="appointment-tab">
+
+									<!-- Appointment Tab -->
+									<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+										<li class="nav-item">
+											<a class="nav-link" ng-click="ChangeAppointmentList('Past')" href="#"
+												data-toggle="tab">Past</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link active " ng-click="ChangeAppointmentList('Today')"
+												href="#" data-toggle="tab">Today</a>
+										</li>
+										<li class="nav-item ">
+											<a class="nav-link" ng-click="ChangeAppointmentList('Upcoming')" href="#"
+												data-toggle="tab">Upcoming</a>
+										</li>
+									</ul>
+									<!-- /Appointment Tab -->
+
+									<div class="tab-content">
+
+										<!-- Upcoming Appointment Tab -->
+										<div class="tab-pane show active" id="Past">
+											<div class="card card-table mb-0">
+												<div class="card-body">
+													<div class="table-responsive">
+
+														<span ng-if="Loader == true">
+															<span class="spinner-grow spinner-grow-sm"></span>
+															Loading..
+														</span>
+
+														<table ng-if="Loader != true"
+															class="table table-hover table-center mb-0">
+															<thead>
+																<tr>
+																	<th>
+																		Team
+																	</th>
+																	<th>
+																		Patient
+																	</th>
+																	<th>Appointment Date</th>
+																	<!-- <th>Appointment Time</th> -->
+																	<th>Voucher</th>
+																	<th> Voucher Discount</th>
+																	<th>Session Amount</th>
+																	<th>Paid Amount</th>
+																	<!-- <th>Status</th> -->
+																	<!-- <th>Reciept</th> -->
+																	<th style="text-align: center;"> Action </th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr
+																	ng-repeat="AppointmentObj in PatientInfoObj.AppointmentList">
+																	<td>
+
+																		<h2 class="table-avatar">
+																			<a href="#" class="avatar avatar-sm mr-2">
+																				<img ng-if="UserInfo.DisplayPicture == null"
+																					class="avatar-img rounded-circle"
+																					src="assets/img/user.png"
+																					alt="User Image">
+																				<img ng-if="UserInfo.DisplayPicture != null"
+																					class="avatar-img rounded-circle"
+																					src="http://173.212.252.86:8051/Uploads/Images/{{AppointmentObj.DisplayPicture}}"
+																					alt="User Image">
+																			</a>
+																			<a href="#">{{AppointmentObj.SpecialityTitle}}
+																				<span>#PT{{AppointmentObj.AppointmentID}}</span></a>
+																		</h2>
+																	</td>
+																	<td>
+
+																		<h2 class="table-avatar">
+																			<a href="#" class="avatar avatar-sm mr-2">
+																				<img ng-if="UserInfo.PatientImage == 'null'"
+																					class="avatar-img rounded-circle"
+																					src="assets/img/user.png"
+																					alt="User Image">
+																				<img ng-if="UserInfo.PatientImage != 'null'"
+																					class="avatar-img rounded-circle"
+																					src="https://api.sapiensin.com/Uploads/Images/{{AppointmentObj.PatientImage}}"
+																					alt="User Image">
+																			</a>
+																			<a href="#">{{AppointmentObj.PatientName}}
+																				<span>PH:
+																					{{AppointmentObj.PatientMobileNumber}}</span></a>
+																		</h2>
+																	</td>
+																	<td>{{AppointmentObj.SessionStartDate | date}} <br>
+																		{{AppointmentObj.SessionStartTime }} </td>
+																	<!-- <td> </td> -->
+
+																	<td>
+																		<span
+																			ng-if="AppointmentObj.VoucherTitle != null">
+																			{{AppointmentObj.VoucherTitle}} </span>
+																		<span
+																			ng-if="AppointmentObj.VoucherTitle == null">
+																			N/A </span>
+																	</td>
+																	<td>
+																		{{AppointmentObj.DiscountVoucherPercentage }}
+																		<span
+																			ng-if="(AppointmentObj.DiscountVoucherAmount == 0 &&  AppointmentObj.DiscountVoucherPercentage == 0) || (AppointmentObj.DiscountVoucherAmount == null &&  AppointmentObj.DiscountVoucherPercentage == null)">N/A
+																		</span>
+																		<span
+																			ng-if="AppointmentObj.DiscountVoucherAmount > 0 ">
+																			Rs.{{AppointmentObj.DiscountVoucherAmount}}
+																		</span>
+																		<span
+																			ng-if="AppointmentObj.DiscountVoucherPercentage > 0 ">
+																			{{AppointmentObj.DiscountVoucherPercentage}}%
+																		</span>
+																	</td>
+																	<td>Rs.{{AppointmentObj.SessionCharges}}</td>
+																	<td>Rs.{{AppointmentObj.FinalAmount}}</td>
+
+																	<!-- <td>
+																		<a ng-if="OrderDetailObj.MedicineImage != 'null'"
+																			href="{{ImagePath + OrderDetailObj.MedicineImage}}">Download</a>
+																		<span
+																			ng-if="OrderDetailObj.MedicineImage == 'null'">
+																			Reciept not available
+																		</span>
+																	</td> -->
+
+																	<td class="text-right">
+																		<i style="cursor: pointer;"
+																			class="bi bi-three-dots-vertical"></i>
+																		<div class="dropdown show">
+																			<i class="fa fa-ellipsis-v"
+																				aria-hidden="true"
+																				data-toggle="dropdown"
+																				aria-haspopup="true"
+																				aria-expanded="false"></i>
+																			<!-- <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																			  Dropdown link 
+																			</a> -->
+
+																			<div class="dropdown-menu"
+																				aria-labelledby="dropdownMenuLink">
+																				<a ng-click="GoToteamInterection(AppointmentObj)"
+																					class="dropdown-item bg-info-light"
+																					href="#">
+																					<i class="far fa-eye"></i>
+																					Enter Session
+																				</a>
+																				<a ng-click="ViewTeams(AppointmentObj)"
+																					class="dropdown-item bg-info-light"
+																					href="#">
+																					<i class="far fa-eye"></i>
+																					View Team
+																				</a>
+																				<a ng-click="FeedbackDialoge(AppointmentObj)"
+																					class="dropdown-item bg-info-light"
+																					href="#">
+																					<i class="far fa-eye"></i>
+																					Feedback
+																				</a>
+
+																				<a class="dropdown-item"
+																					ng-if="OrderDetailObj.MedicineImage != 'null'"
+																					href="{{ImagePath + OrderDetailObj.MedicineImage}}">
+																					Download Reciept
+																				</a>
+																				<a class="dropdown-item bg-info-light"
+																					ng-if="OrderDetailObj.MedicineImage == 'null'">
+																					Reciept not available
+																				</a>
+
+																			</div>
+																		</div>
+
+																		<!-- <div class="table-action text-right">
+																			<a href="#"
+																				ng-click="GoToteamInterection(AppointmentObj)"
+																				class="btn btn-sm bg-info-light">
+																				<i class="far fa-eye"></i> Enter Session
+																			</a>
+
+																			<a href="#"
+																				ng-click="ViewTeams(AppointmentObj)"
+																				class="btn btn-sm bg-info-light">
+																				<i class="far fa-eye"></i> View Team
+																			</a>
+																		</div> -->
+																	</td>
+																</tr>
+																<tr ng-if="PatientInfoObj.AppointmentList.length == 0">
+																	<td colspan="5"
+																		style="text-align: center;color: grey;"> No Data
+																		Found </td>
+																</tr>
+
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- /Upcoming Appointment Tab -->
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<ng-include src="'./angularjs/htmlTemplates/Footer.html'" style="width:100%;"></ng-include>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+	<!-- Team view Modal -->
+	<div class="modal fade" id="team_details_modal" aria-hidden="true" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" style="width: 70% !important; max-width: 100% !important;"
+			role="document">
+			<div class="modal-content">
+				<!--	<div class="modal-header">
+							<h5 class="modal-title">Delete</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>-->
+				<div class="modal-body">
+					<div class="form-content p-2">
+						<style>
+							#Prof_tbl th,
+							td {
+								text-align: center !important;
+							}
+						</style>
+						<!-- <h4 class="modal-title">Team details</h4> -->
+
+						<div class="table-responsive">
+
+							<div style="text-align: center;" ng-if="TeamDetailLoader != true">
+								<h2> {{TeamsDetailRes.SpecialityTitle}} Team </h2>
+								<p style="color: green;"> Session Charges: Rs.{{ TeamsDetailRes.SessionCharges }}</p>
+							</div>
+
+							<span ng-if="TeamDetailLoader == true">
+								<span class="spinner-grow spinner-grow-sm"></span>
+								Loading..
+							</span>
+
+							<table id="Prof_tbl" ng-if="TeamDetailLoader != true"
+								class="table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>
+											Sr No
+										</th>
+										<th>
+											Name
+										</th>
+										<th>Designation</th>
+										<th>Experience</th>
+										<th>Education</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="TeamsDetailObj in TeamsDetailList">
+										<td>
+											{{$index + 1}}
+										</td>
+
+										<td>
+
+											<h2 class="table-avatar">
+												<a href="#" class="avatar avatar-sm mr-2">
+													<img ng-if="TeamsDetailObj.DisplayPicture == null"
+														class="avatar-img rounded-circle" src="assets/img/user.png"
+														alt="User Image">
+													<img ng-if="TeamsDetailObj.DisplayPicture != null"
+														class="avatar-img rounded-circle"
+														src="https://api.sapiensin.com/Uploads/Images/{{TeamsDetailObj.DisplayPicture}}"
+														alt="User Image">
+												</a>
+												<a href="#">{{TeamsDetailObj.Name}}
+													<!-- <span>#PT{{TeamsDetailObj.AppointmentID}}</span></a> -->
+											</h2>
+										</td>
+
+										<td>{{TeamsDetailObj.UserType }} </td>
+										<td>{{TeamsDetailObj.Experience }} </td>
+										<td>{{TeamsDetailObj.Education }} </td>
+
+
+									</tr>
+									<tr ng-if="TeamsDetailList.length == 0">
+										<td colspan="5" style="text-align: center;color: grey;"> No Data
+											Found </td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Team view Modal -->
+	<!-- Team view Modal -->
+	<div class="modal fade" id="FeedBack_modal" aria-hidden="true" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" style="width: 70% !important; max-width: 100% !important;"
+			role="document">
+			<div style="text-align: center;" class="modal-content">
+				<div class="modal-header">
+					<h3 class="modal-title">Feedback</h3>
+				</div>
+				<div class="modal-body">
+					<!-- <div class="rateit" id="customer_rating" ng-click="ratingChanged()"> -->
+					<div class="rateit" id="customer_rating">
+					</div>
+					<br>
+				 	<input type="hidden" value="SelectedTeamID" ng-model="SelectedTeamID" id="SelectedTeamID">
+					<textarea ng-model="ReviewStatement" id="ReviewStatement" rows="4" cols="70"> </textarea>
+					<br>
+					 
+					<button ng-if="UserFeedBackList.length  == 0" ng-click="AddOrUpdateRatingAndReviews()"
+						class="btn btn-primary submit-btn">
+						Submit
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Team view Modal -->
+	<!-- jQuery -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.rateit.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Sticky Sidebar JS -->
+	<script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+	<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+	<!-- Circle Progress JS -->
+	<script src="assets/js/circle-progress.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+
+</html>

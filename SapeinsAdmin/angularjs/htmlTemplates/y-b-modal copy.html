@@ -1,0 +1,57 @@
+<div class="modal fade" id="addItem" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header bg-gradient-directional-success white">
+                <h4 class="modal-title" id="myModalLabel">Add Supplier</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <p id="statusMsg"></p><input type="hidden" name="mcustomer_id" id="mcustomer_id" value="0">
+          
+                <div ng-repeat="field in filedsList">
+                    <div ng-if="field.Type == 'Text'" class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="{{field.Title}}">{{field.Title}}</label>
+                        <div class="col-sm-10">
+                            <input type="text" placeholder="{{field.Title}}" class="form-control margin-bottom"
+                                id="{{field.Title}}" ng-model="reqObj.{{field.Title}}" name="{{field.Title}}" required>
+                        </div>
+                    </div>
+                    <div ng-if="field.Type == 'Select'" class="form-group row">
+                        <label class="col-sm-2 col-form-label" for="{{field.Title}}">{{field.Title}}</label>
+                        <div class="input-group col-sm-10">
+                            <div class="input-group-addon">
+                                <a href="#" class="btn btn-primary" style="margin-top: -2px;" data-toggle="modal" data-target="#addItem">Add</a>
+                            </div>
+                            <select name="{{field.Title}}Obj" ng-model="reqObj.{{field.Title}}" ng-change="SlctChngd({{field.ChildList}})" class="selectpicker form-control round">
+                                <option ng-repeat="obj in {{field.Title}}List" value="obj">
+                                    {{ obj.Title }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="form-group row">
+                            <label class="col-sm-2 col-form-label"
+                                   for="phone">Phone</label>
+                            <div class="col-sm-10">
+                                <input type="text" placeholder="Phone"
+                                       class="form-control margin-bottom" name="phone" id="mcustomer_phone">
+                            </div>
+                        </div> -->
+
+
+            </div>
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input ng-click="submitForm()" id="msupplier_add" class="btn btn-primary submitBtn" value="ADD" />
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Sapiens In - Login</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="admin/assets/img/favicon.png">
+
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="admin/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="admin/assets/css/font-awesome.min.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="admin/assets/css/style.css">
+		
+		<!--[if lt IE 9]>
+			<script src="admin/assets/js/html5shiv.min.js"></script>
+			<script src="admin/assets/js/respond.min.js"></script>
+		<![endif]-->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="./angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="./angularjs/Services/api-resolver.service.js"></script>
+    <script type="text/javascript" src="./angularjs/Services/http.serviec.js"></script>
+    <script type="text/javascript" src="./angularjs/Services/constant.serviec.js"></script>
+    <script type="text/javascript" src="./angularjs/Services/api.serviec.js"></script>
+    <script type="text/javascript" src="./angularjs/Controllers/Auth.Contrller.js"></script>
+    </head>
+	
+    <body ng-app="app" ng-controller="authController">
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper login-body">
+            <div class="login-wrapper">
+            	<div class="container">
+                	<div class="loginbox">
+                    	<div class="login-left">
+							<img class="img-fluid" src="admin/assets/img/logo.png" alt="Logo">
+                        </div>
+                        <div class="login-right">
+							<div class="login-right-wrap">
+								<h1>Login</h1>
+								<p class="account-subtitle">Access to our dashboard</p>
+								
+								<!-- Form -->
+								<!-- <form action="doctor-list.html"> -->
+								<form >
+									<div class="form-group">
+										<input class="form-control" ng-model="MobileNumber" type="text" placeholder="MobileNumber">
+									</div>
+									<div class="form-group">
+										<input class="form-control" ng-model="Password" type="password" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<button ng-click="LoginUser()" class="btn btn-primary btn-block" type="submit">Login</button>
+									</div>
+								</form>
+								<!-- /Form -->
+								
+								<div  ng-if="errorMsg != null|| errorMsg != ''" class="text-center forgotpass"><a style="color: red;" href="#">{{errorMsg}}</a></div>
+								<div class="text-center forgotpass"><a href="#">Forgot Password?</a></div>
+								<!-- <div class="login-or">
+									<span class="or-line"></span>
+									<span class="span-or">or</span>
+								</div> -->
+								  
+								<!-- Social Login -->
+								<!-- <div class="social-login">
+									<span>Login with</span>
+									<a href="#" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" class="google"><i class="fa fa-google"></i></a>
+								</div> -->
+								<!-- /Social Login -->
+								
+								<!-- <div class="text-center dont-have">Don’t have an account? <a href="#">Register</a></div> -->
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+        <script src="admin/assets/js/jquery-3.2.1.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="admin/assets/js/popper.min.js"></script>
+        <script src="admin/assets/js/bootstrap.min.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="admin/assets/js/script.js"></script>
+		
+    </body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
+</html>

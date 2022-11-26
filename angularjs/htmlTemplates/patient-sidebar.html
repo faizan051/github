@@ -1,0 +1,58 @@
+<div class="profile-sidebar">
+    <div class="widget-profile pro-widget-content">
+        <div class="profile-info-widget">
+            <input style="display: none;" type="file" id="UploadFile"	onchange="angular.element(this).scope().uploadpic(this,'Profile')">
+            <a href="#" ng-click="changeProfilePic()" class="booking-doc-img">
+                <img ng-if="UserInfo.DisplayPicture == null" class="rounded-circle"
+                    src="assets/img/user.png" width="31">
+                <img ng-if="UserInfo.DisplayPicture != null" class="rounded-circle"
+                    src="https://api.sapiensin.com/Uploads/Images/{{UserInfo.DisplayPicture}}"
+                    width="31">
+            </a>
+             
+            <div class="profile-det-info">
+                <h3>{{UserInfo.Name}}</h3>
+
+                <div class="patient-details">
+                    
+                    <h5 class="mb-0">{{UserInfo.UserType}}</h5>
+                    <h5 class="mb-0"><b> Ph: </b> {{UserInfo.MobileNumber}}</h5>
+                    <h5 class="mb-0"> <b> Address: </b>  {{UserInfo.ResidentialAddress}}</h5>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-widget">
+        <nav class="dashboard-menu">
+            <ul>
+                 
+                <li>
+                    <a href="patient-profile.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Appointments</span>
+                    </a>
+                </li>
+                <li ng-if="UserInfo.UserTypeID == UserTypes.Patient">
+                    <a href="lab-test.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Lab Tests</span>
+                    </a>
+                </li>
+                <li  ng-if="UserInfo.UserTypeID == UserTypes.Patient">
+                    <a href="med-order.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Medicines</span>
+                    </a>
+                </li>
+             
+                <li>
+                    <a ng-click="LogOut('index')" href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

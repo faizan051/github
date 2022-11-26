@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="assets/img/favicon.png" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="assets/css/rateit.css" rel="stylesheet" type="text/css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<script src="./angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/CheckOut.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Toolbar.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Footer.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Booking.Contrller.js"></script>
+	<!-- <script type="text/javascript" src="/admin/assets/js/moment.js"></script> -->
+
+	<script type="text/javascript" src="assets/js/moment.min.js"></script>
+</head>
+<body ng-app="app" ng-controller="BookingController" >
+    <div class="main-wrapper">
+        <ng-include src="'./angularjs/htmlTemplates/Toolbar.html'" style="width:100%;"></ng-include>
+
+        		<!-- Page Content -->
+		<div class="content">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-12">
+
+							<!-- Doctor Widget -->
+							<div class="card" >
+								<div class="card-body">
+									<div class="doctor-widget">
+										<div class="doc-info-left" >
+											<!-- <div class="doctor-img">
+											 
+												<a href="#">
+													<img ng-src="https://api.sapiensin.com/Uploads/Images/{{teamObj.TeamMembers[0].DisplayPicture}}"
+														class="img-fluid" alt="User Image">
+												</a>
+											</div> -->
+											<div class="doc-info-cont">
+												<!-- <h4 class="doc-name"><a href="#">{{teamObj.TeamMembers[0].Name}}</a></h4> -->
+												
+												<!-- <p class="doc-speciality">Experience: {{teamObj.TeamMembers[0].Experience}} -->
+												</p>
+												<!-- <h5 class="doc-department"><img
+														src="https://api.sapiensin.com/Uploads/Images/{{teamObj.SpecialityLogo}}"
+														class="img-fluid" alt="">{{teamObj.SpecialityTitle}}</h5> -->
+												<!-- <div class="rating">
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star filled"></i>
+													<i class="fas fa-star"></i>
+													<span class="d-inline-block average-rating">(100)</span>
+												</div> -->
+												<div class="clinic-details">
+													<!-- <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Florida, USA</p> -->
+													<ul class="clinic-gallery">
+														<!-- <li ng-repeat="teamMemObj in teamObj.TeamMembers"> -->
+														<li>
+															<div class="row">
+																<!-- Profile Widget -->
+																<div style="border: 1px solid grey;border-radius: 50px;margin-right: 15px;"
+																	class=" col-md-12 card widget-profile pat-widget-profile">
+																	<div class="card-body">
+																		<div class="pro-widget-content">
+																			<div class="profile-info-widget">
+																				<a href="#" class="booking-doc-img">
+																					<img src="./assets/img/Farhan.jpeg"
+																						alt="User Image">
+																				</a>
+																				<div class="profile-det-info">
+																					<h3><a href="#"></a> Dr.Farhan </h3>
+																					<!-- <h5><b>Proffession :</b> {{teamMemObj.Name}} </h5> -->
+																					<div class="patient-details">
+																						<h5><b>Proffession :</b> {{teamMemObj.UserType}} </h5>
+																						<h5><b>Experience :</b> {{teamMemObj.Experience}} </h5>
+																						<h5 ><b>Education :</b> {{teamMemObj.Education}} </h5>
+																					 
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<!-- <div class="patient-info">
+																			<ul>
+																				<li>Phone <span>+1 952 001 8563</span></li>
+																				<li>Age <span>38 Years, Male</span></li>
+																				<li>Blood Group <span>AB+</span></li>
+																			</ul>
+																		</div> -->
+																	</div>
+																</div>
+															</div>
+															<!-- /Profile Widget -->
+															<!-- <a href="#" data-fancybox="gallery">
+																<img src="https://api.sapiensin.com/Uploads/Images/{{teamMemObj.DisplayPicture}}"
+																	alt="Speciality">
+															</a> -->
+														</li>
+	
+													</ul>
+												</div>
+												<!-- <div class="clinic-services">
+													<span
+														ng-repeat="teamMemObj in teamObj.TeamMembers">{{teamMemObj.UserType}}</span>
+	
+												</div> -->
+											</div>
+										</div>
+										<div class="doc-info-right">
+											<div class="clini-infos">
+												<ul>
+													<li style="margin-bottom: 15px;">
+														<!-- <i class="far fa-thumbs-up"></i> -->
+														  <!-- <span style="font-size: 20px;"> 5   </span> -->
+														  <i class="far fa-star" style="font-size: 20px;"></i>  <div style="font-size: 20px;" class="rateit" id="customer_overAll_rating">
+														</div>
+														</li>
+													<li  style="margin-bottom: 15px;cursor: pointer;"><i class="far fa-comment"  style="font-size: 20px;"></i>   <span style="font-size: 20px;">  {{teamObj.ReviewsCount}} Feedbacks  </span></li>
+													
+												<li style="margin-bottom: 15px;"><i class="far fa-money-bill-alt"  style="font-size: 20px;"></i> <span style="font-size: 20px;"> <b>   Rs. {{teamObj.SessionCharges}} </b> </span>
+													</li>
+												</ul>
+											</div>
+										 
+										</div>
+									</div>
+								</div>
+								<hr>
+							</div>
+							<!-- /Doctor Widget -->
+
+
+ 
+
+						<!-- Schedule Widget -->
+						<div class="card booking-schedule schedule-widget">
+
+
+							<!-- Schedule Widget -->
+							<div class="card booking-schedule schedule-widget">
+
+								<!-- Schedule Header -->
+								<div class="schedule-header">
+
+
+									<div class="row">
+										<div class="col-md-12">
+											<style>
+												.day-slot li:hover {
+													border: solid 1px;
+													cursor: pointer;
+												}
+											</style>
+											<!-- Day Slot -->
+											<div class="day-slot">
+												<ul>
+													Select date
+													<input id="selectedDate"  ng-change="SetSelectedDay()" class="form-controll"
+														ng-model="selectedDate" type="date">
+													
+
+												</ul>
+											</div>
+											<!-- /Day Slot -->
+
+										</div>
+									</div>
+								</div>
+								<!-- /Schedule Header -->
+
+								<!-- Schedule Content -->
+								<div class="schedule-cont">
+									<div class="row">
+										<div class="col-md-12">
+
+											<!-- Time Slot -->
+											<div class="time-slot" style="cursor: pointer;">
+
+												<ul class="clearfix">
+
+													<li ng-init="time.IsSelected = false"
+														ng-click="SelectTime($index,time)"
+														ng-if="SelectedDay == time.DayNumber && time.Status == true"
+														ng-repeat="time in TeamDetails.TimeSlots"
+														style="margin-bottom: 2px;">
+														<p class="timing {{time.IsSelected == true? 'selected':''}}">
+															<span>{{time.TimeSlot | date : 'h:mm a'}}
+															</span>
+														</p>
+													</li>
+												</ul>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Schedule Widget -->
+
+						<!-- Submit Section -->
+						<div class="submit-section proceed-btn text-right">
+							<!-- {{CartItemList.length}} CartItemList -->
+							<button class="btn btn-primary submit-btn" ng-click="ProceedToPay()" ng-disabled="SelectedSlot == null">
+								Proceed to Pay
+							</button>
+							<!-- <a href="checkout.html" class="btn btn-primary submit-btn">Proceed to Pay</a> -->
+						</div>
+						<!-- /Submit Section -->
+							<hr>
+							<!-- Review Listing -->
+							<div class="widget review-listing">
+
+
+
+								<br>
+								<h2 style="text-align: center;">
+									Feedback
+								</h2>
+
+								<div ng-if="IsTeamFeedbackLoaded == false" class="text-center">
+									<span class="spinner-grow spinner-grow"></span>
+									Loading..
+								</div>
+								
+								<div ng-if="IsTeamFeedbackLoaded == true && RatingAndReviewsList.length == 0" style="text-align: center; color: gray;"> No Data Found </div>
+
+								<ul ng-show="IsTeamFeedbackLoaded == true" class="comments-list">
+									<!-- Comment List -->
+									<li ng-if="GetRatingAndReviewsLoader == true">
+										<div class="text-center">
+											<span class="spinner-grow spinner-grow"></span>
+											Loading..
+										</div>
+									</li>
+									<li ng-if="GetRatingAndReviewsLoader != true"
+										ng-repeat="RatingAndReviewsObj in RatingAndReviewsList">
+
+										<div class="comment">
+											<img class="avatar avatar-sm rounded-circle"
+												ng-if="RatingAndReviewsObj.DisplayPicture != null"
+												alt="User Image"
+												src="https://api.sapiensin.com/Uploads/Images/{{RatingAndReviewsObj.DisplayPicture}}">
+											<img class="avatar avatar-sm rounded-circle"
+												ng-if="RatingAndReviewsObj.DisplayPicture == null"
+												alt="User Image" src="assets/img/user.jpg">
+											<div class="comment-body">
+												<div class="meta-data">
+													<span class="comment-author">
+														{{RatingAndReviewsObj.Name}}
+													</span>
+													 <span class="comment-date">
+														{{RatingAndReviewsObj.AddedDateTime |
+														date:'yyyy-MM-dd HH:mm'}}
+													</span>
+													<!-- <div> -->
+														 <!-- <span style="font-size: 20px;"> <i class="far fa-thumbs-up"></i>   	{{RatingAndReviewsObj.Rating}}  </span> -->
+													<!-- </div> -->
+													<div class="rateit" id="customer_rating_{{$index}}">
+													</div>
+													<!-- <div class="review-count rating">
+														<i class="fas fa-star filled"></i>
+														<i class="fas fa-star filled"></i>
+														<i class="fas fa-star filled"></i>
+														<i class="fas fa-star filled"></i>
+														<i class="fas fa-star"></i>
+													</div> -->
+												</div>
+
+												<!-- <p ng-if="ProceedingsObj.AttachmentFileName != null && ProceedingsObj.AttachmentFileName != 'null'"
+													class="recommended">
+													<a target="_blank"
+														style="border: 1px solid grey;border-radius: 10px;padding: 7px;"
+														href="https://api.sapiensin.com/Uploads/Images/{{ProceedingsObj.AttachmentFileName}}">
+														<i class="fa fa-download"
+															aria-hidden="true"></i>
+														Download Attachment
+													</a>
+												</p> -->
+												<p class="comment-content" style="text-align: center;">
+													{{RatingAndReviewsObj.ReviewStatement}}
+												</p>
+												<!-- <div class="comment-reply">
+													  <a class="comment-btn" href="#">
+														<i class="fas fa-reply"></i> Reply
+													</a>  
+													<p class="recommend-btn">
+														<span>Recommend?</span>
+														<a href="#" class="like-btn">
+															<i class="far fa-thumbs-up"></i> Yes
+														</a>
+														<a href="#" class="dislike-btn">
+															<i class="far fa-thumbs-down"></i> No
+														</a>
+													</p>
+												</div> -->
+											</div>
+										</div>
+										<hr>
+									</li>
+									<!-- /Comment List -->
+								</ul>
+						 
+							 
+
+							</div>
+							<!-- /Review Listing -->
+
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /Page Content -->
+
+
+
+        <ng-include src="'./angularjs/htmlTemplates/Footer.html'" style="width:100%;"></ng-include>
+    </div>
+
+	<!-- Footer -->
+    
+    <!-- /Footer -->
+
+
+    <script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.rateit.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+</body>
+</html>

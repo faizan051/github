@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+	<meta charset="utf-8">
+	<title>Sapiens In</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<!-- Favicons -->
+	<link href="assets/img/favicon.png" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css"> -->
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+	<script src="./angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api-resolver.service.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/http.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/constant.serviec.js"></script>
+	<script type="text/javascript" src="./angularjs/Services/api.serviec.js"></script>
+
+	<script type="text/javascript" src="./angularjs/Controllers/Toolbar.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/CheckOut.Contrller.js"></script>
+	<script type="text/javascript" src="./angularjs/Controllers/Footer.Contrller.js"></script>
+	<script type="text/javascript" src="assets/js/moment.min.js"></script>
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body ng-app="app" ng-controller="checkOutController">
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<ng-include src="'./angularjs/htmlTemplates/Toolbar.html'" style="width:100%;"></ng-include>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<!-- <div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">Checkout</h2>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-md-7 col-lg-8">
+						<div class="card">
+							<div class="card-body">
+
+								<!-- Checkout Form -->
+								<form>
+									<!-- Personal Information -->
+									<div class="info-widget">
+										<h4 class="card-title">Account Credentials
+											<span ng-if="IsUserAlreadyLoggedIn != true">
+												(Please
+												<span ng-if="IsForLogin == false"> Register </span>
+												<span ng-if="IsForLogin == true"> Login </span>
+												To Proceed)
+											</span>
+										</h4>
+										<div class="row">
+											<div class="col-md-6 col-sm-12">
+												<div class="form-group card-label">
+													<label>Phone</label>
+													<input ng-disabled="IsUserAlreadyLoggedIn == true"
+														ng-blur="CheckMobileNumberForAccountCreation()"
+														ng-model="UserInfo.MobileNumber" id="MobileNumber"
+														class="form-control" type="text">
+												</div>
+											</div>
+
+
+											<div class="col-md-6 col-sm-12" ng-if="IsUserAlreadyLoggedIn == false ">
+												<div class="form-group card-label">
+													<label>Password</label>
+													<input ng-model="UserInfo.Password" id="Password"
+														class="form-control" type="password">
+												</div>
+											</div>
+
+											<div class="col-md-6 col-sm-12" ng-if="IsForLogin == false">
+												<div class="form-group card-label">
+													<label>Name</label>
+													<input ng-disabled="IsUserAlreadyLoggedIn == true"
+														ng-model="UserInfo.Name" id="Name" class="form-control"
+														type="text">
+												</div>
+											</div>
+
+
+											<div class="col-md-6 col-sm-12" ng-if="IsForLogin == false">
+												<div class="form-group card-label">
+													<label>Residential Address</label>
+													<input ng-disabled="IsUserAlreadyLoggedIn == true"
+														ng-model="UserInfo.ResidentialAddress" id="ResidentialAddress"
+														class="form-control" type="text">
+												</div>
+											</div>
+											<div class="col-md-6 col-sm-12"
+												ng-if="IsForLogin == false && IsUserAlreadyLoggedIn != true">
+												<div class="btn-file btn"
+													style="border: 1px solid grey;border-radius: 10px;padding: 7px;">
+													<i class="fa fa-paperclip"></i>
+													<small style="margin-left:10px;"> Upload Profile Picture </small>
+													<input style="cursor: pointer;" type="file"
+														onchange="angular.element(this).scope().uploadpic(this,'Profile')">
+												</div>
+												<div ng-if="selectedProfileFilename != null && IsUserAlreadyLoggedIn != true"
+													style="color: green;">
+													File: {{selectedProfileFilename}}
+													<!-- File: {{ProfileFilename}} -->
+												</div>
+											</div>
+
+										</div>
+										<!-- <div class="exist-customer">Existing Customer? <a ng-click="GoToLogin()" href="#">Click here to login</a></div> -->
+										<div ng-if="IsUserAlreadyLoggedIn != true"
+											style="text-align: center;margin-top:25px">
+
+											<button ng-if="IsForLogin == false"
+												
+												ng-click="AddOrUpdateUser()" class="btn btn-primary submit-btn">
+												<span ng-if="RegisterLoader == true">
+													<span class="spinner-grow spinner-grow-sm"></span>
+													Loading..
+												</span>
+												<span ng-if="RegisterLoader != true">
+													<span> Register </span>
+												</span>
+											</button>
+											<!-- ng-disabled=" UserInfo.MobileNumber == null || UserInfo.MobileNumber == '' 
+											|| UserInfo.Password == null || UserInfo.Password == ''" -->
+											<button ng-if="IsForLogin == true" ng-click="Login()"
+												class="btn btn-primary submit-btn">
+												<span ng-if="LoginLoader == true">
+													<span class="spinner-grow spinner-grow-sm"></span>
+													Loading..
+												</span>
+												<span ng-if="LoginLoader != true">
+													<span> Login </span>
+												</span>
+											</button>
+											<!-- <button ng-if="IsUserAlreadyLoggedIn != true  && IsForLogin != false"
+												ng-click="IsLogInClicked(false)" class="btn btn-primary submit-btn">
+
+												<span> Sign Up </span>
+											</button> -->
+											<br>
+											<br>
+											<span style="cursor:pointer ;color: grey;" ng-click="IsLogInClicked(true)"
+												ng-if="IsForLogin == false"> <b> Login </b> if
+												already have an account </span>
+											<span style="cursor:pointer ;color: grey;" ng-click="IsLogInClicked(false)"
+												ng-if="IsForLogin == true"> <b> Register </b>
+												for a new account </span>
+											<br ng-if="IsForLogin == true && errorMsg != null && errorMsg != ''">
+											<span style="cursor:pointer ;color: red;"
+												ng-if="IsForLogin == true && errorMsg != null && errorMsg != ''"> <b>
+													{{errorMsg}} </b></span>
+
+											<!-- <button ng-if="IsUserAlreadyLoggedIn != true  "
+												ng-click="IsLogInClicked(true)" class="btn btn-primary submit-btn">
+
+												<span> Login </span>
+											</button> -->
+
+										</div>
+									</div>
+									<!-- /Personal Information -->
+
+									<h4 ng-if="IsUserAlreadyLoggedIn == true" class="card-title">Billing Address</h4>
+									<div ng-if="IsUserAlreadyLoggedIn == true" class="row">
+
+										<div class="col-md-12 col-sm-12">
+											<div class="form-group form-check">
+												<input class="form-check-input" type="checkbox"
+													ng-model="IsSameAsResidentialAddress"
+													ng-change="IsSameAddressChanged()" id="IsSameAsResidentialAddress"
+													name="IsSameAsResidentialAddress">
+												<label class="form-check-label">Same As Residential Address</label>
+											</div>
+											<div class="form-group card-label">
+												<label>Billing Address</label>
+												<input ng-disabled="IsSameAsResidentialAddress == true"
+													ng-model="UserInfo.BillingAddress" id="BillingAddress"
+													class="form-control" type="text">
+											</div>
+										</div>
+
+									</div>
+									<hr ng-if="IsUserAlreadyLoggedIn == true && FromModule == 'Med'">
+									<div ng-if="IsUserAlreadyLoggedIn == true && FromModule == 'Med'"
+										class="input-group">
+										<h4 class="card-title">Order Date</h4>
+
+										<ul>
+											<!-- <input      class="form-controll datepicker" -->
+
+											<input ng-change="OrderDateChanged()" id="OrderDateDiv"
+												class="form-controll" ng-model="OrderDate" type="date">
+
+
+										</ul>
+
+									</div>
+									<hr>
+									<div ng-if="IsUserAlreadyLoggedIn == true && FromModule == 'Med'"
+										class="input-group">
+										<br>
+
+										<div class="btn-file btn"
+											style="border: 1px solid grey;border-radius: 10px;padding: 7px;">
+											<i class="fa fa-paperclip"></i>
+											<small style="margin-left:10px;"> Upload Prescription </small>
+											<input style="cursor: pointer;" type="file"
+												onchange="angular.element(this).scope().uploadpic(this,'Prescription')">
+										</div>
+
+									</div>
+									<br ng-if="selectedPrescriptionFilename != null && FromModule == 'Med' &&  IsUserAlreadyLoggedIn == true">
+									<br ng-if="selectedPrescriptionFilename != null && IsUserAlreadyLoggedIn == true">
+
+									<!-- <div ng-if="selectedPrescriptionFilename != null && IsUserAlreadyLoggedIn == true" -->
+									<div ng-if="selectedPrescriptionFilename != null && IsUserAlreadyLoggedIn == true"
+										style="color: green;">
+										File: {{selectedPrescriptionFilename}}
+										<!-- File: {{PrescriptionFilename}} -->
+									</div>
+									<br>
+									<hr ng-if="IsUserAlreadyLoggedIn == true">
+									<div style="text-align: center;" ng-if="IsUserAlreadyLoggedIn == true && FromModule != 'booking'">
+										<h5 style="text-align: center;" class="card-title">
+											 Cash on Delivery
+										</h5>
+									</div>
+									<div style="text-align: center;" ng-if="IsUserAlreadyLoggedIn == true && FromModule == 'booking'"
+										class="payment-widget">
+										<!-- <h4 class="card-title">Payment Method</h4> -->
+										<h4 class="card-title">
+											<img style="width: 80px;" src="assets/img/JazzCash_logo.png">
+											Pay With Jazz cash( 0324-6228527 )
+										</h4>
+										<h5 style="text-align: center;" class="card-title">
+											Or
+											<br>
+											<br>
+											Pay With Banking App or any Bank branch
+											<br>
+											<br> <img style="width: 80px;" src="assets/img/hblLogo.png">
+											<br>
+											<br> <b>Account Title : </b> Husnain Ali Tariq
+											<br> <b>IBAN:</b> 1805 7900 8987 03
+										</h5>
+										<!-- <table class="ml-0 ml-md-150">
+											<tr>
+												<td rowspan="2"> <img style="width: 80px;" src="assets/img/hblLogo.png">  </td>
+												<td> Account Title: Husnain Ali Tariq </td>
+											</tr>
+											<tr>
+												<td>  IBAN:  1805 7900 8987 03  </td>
+											</tr>
+										</table> -->
+
+										<!-- Credit Card Payment -->
+										<!-- <div class="payment-list">
+										 <img style="width: 80px;" src="assets/img/JazzCash_logo.png">
+										</div> -->
+										<!-- /Credit Card Payment -->
+
+
+										<div class="btn-file btn"
+											style="border: 1px solid grey;border-radius: 10px;padding: 7px;">
+											<i class="fa fa-paperclip"></i>
+											<small style="margin-left:10px"> Upload Payment Receipt </small>
+											<input style="cursor: pointer;" type="file"
+												accept="{{FileUploadConstants.Formats}}"
+												onchange="angular.element(this).scope().uploadpic(this,'jazzCash')">
+
+										</div>
+
+										<br>
+
+										<br>
+										<b>Allowed Files Formats</b> <small> {{FileUploadConstants.FormatsMsg}} </small>
+										<br>
+										<b>Allowed File Size</b> <small> {{FileUploadConstants.Size}}Mb </small>
+										<br>
+										<div ng-if="selectedjazzCashFilename != null">
+											<b> Uploaded Payment Receipt: </b>
+											<span style="color: green;"> {{selectedjazzCashFilename}} </span>
+										</div>
+										<br>
+
+
+										<!-- Paypal Payment -->
+										<!-- <div class="payment-list">
+												<label class="payment-radio paypal-option">
+													<input type="radio" name="radio">
+													<span class="checkmark"></span>
+													Paypal
+												</label>
+											</div> -->
+										<!-- /Paypal Payment -->
+
+										<!-- Terms Accept -->
+										<!-- <div class="terms-accept">
+											<div class="custom-checkbox">
+												<input type="checkbox" id="terms_accept">
+												<label for="terms_accept">I have read and accept <a href="#">Terms &amp;
+														Conditions</a></label>
+											</div>
+										</div> -->
+										<!-- /Terms Accept -->
+										<!-- ng-disabled="checkOutForm.$invlaid == true" -->
+										<!-- Submit Section -->
+										<!-- ng-disabled="checkOutLoader == true || selectedjazzCashFilename == null || selectedjazzCashFilename == '' || UserInfo.BillingAddress == null || UserInfo.BillingAddress == ''" -->
+										
+										<!-- /Submit Section -->
+
+									</div>
+
+									<div class="submit-section mt-4">
+										<button ng-if="CartItemList.length > 0" ng-click="Checkout()" type="submit"
+											class="btn btn-primary submit-btn">
+											<span ng-if="checkOutLoader == true">
+												<span class="spinner-grow spinner-grow-sm"></span>
+												Loading..
+											</span>
+											<span ng-if="checkOutLoader != true"> Confirm and Pay </span>
+										</button>
+									</div>
+								</form>
+								<!-- /Checkout Form -->
+
+							</div>
+						</div>
+
+					</div>
+
+					<div class="col-md-5 col-lg-4 theiaStickySidebar">
+
+						<!-- Booking Summary -->
+						<div ng-if="IsUserAlreadyLoggedIn == true" class="card booking-card">
+							<div class="card-header">
+								<h4 class="card-title">
+									<span ng-if="FromModule == 'Med'"> Medicines </span>
+									<span ng-if="FromModule == 'Lab'"> Lab Tests </span>
+									<span ng-if="FromModule == 'booking'"> Appointment </span>
+									Summary
+								</h4>
+							</div>
+							<div class="card-body">
+
+								<!-- Booking Doctor Info -->
+								<!-- <div class="booking-doc-info">
+										<a href="doctor-profile.html" class="booking-doc-img">
+											<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+										</a>
+										<div class="booking-info">
+											<h4><a href="doctor-profile.html">Dr. Darren Elder</a></h4>
+											<div class="rating">
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star"></i>
+												<span class="d-inline-block average-rating">35</span>
+											</div>
+											<div class="clinic-details">
+												<p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA</p>
+											</div>
+										</div>
+									</div> -->
+								<!-- Booking Doctor Info -->
+
+								<div class="booking-summary">
+									<div class="booking-item-wrap">
+										<ul class="booking-date">
+											<li ng-if="FromModule == 'Lab'" ng-repeat="cartObj in CartItemList">
+												<i ng-click="addToCart(cartObj.labTestObj,false,$index)"
+													style="cursor: pointer;color: red;font-size: 20px;margin-right: 10px;"
+													class="fa fa-minus-circle"></i>
+												{{cartObj.labTestObj.LabTestTitle}}
+												<span>{{cartObj.labTestObj.TotalAmount}}</span>
+											</li>
+											<li ng-if="FromModule == 'Med'" ng-repeat="cartObj in CartItemList">
+												<div class="row">
+													<div class="col-1">
+														<i ng-click="addToCart(cartObj.MedObj,false,$index)"
+															style="cursor: pointer;color: red;font-size: 20px;margin-right: 10px;"
+															class="fa fa-minus-circle"></i>
+													</div>
+													<div class="col-8" style="font-size: 12px;">
+														<img ng-if="cartObj.MedObj.DisplayPicture != null"
+															style="width: 20px;"
+															src="http://173.212.252.86:8051/Uploads/Images/{{cartObj.MedObj.DisplayPicture}}">
+														<img ng-if="cartObj.MedObj.DisplayPicture == null"
+															style="width: 20px;" src="assets/img/med.png">
+
+														<b> {{cartObj.MedObj.MedicineTitle}} *
+															{{cartObj.MedObj.Quantity}} </b>
+													</div>
+													<div class="col-2">
+														<small> {{cartObj.MedObj.Price * cartObj.MedObj.Quantity}}
+														</small>
+													</div>
+												</div>
+												<!-- <i ng-click="addToCart(cartObj.MedObj,false,$index)"
+													style="cursor: pointer;color: red;font-size: 20px;margin-right: 10px;"
+													class="fa fa-minus-circle"></i>
+												<img ng-if="cartObj.MedObj.DisplayPicture != null" style="width: 20px;"
+													src="https://api.sapiensin.com/Uploads/Images/{{cartObj.MedObj.DisplayPicture}}">
+												<img ng-if="cartObj.MedObj.DisplayPicture == null" style="width: 20px;"
+													src="assets/img/med.png"> 
+
+												{{cartObj.MedObj.MedicineTitle}} * {{cartObj.MedObj.Quantity}}
+												<span>{{cartObj.MedObj.Price * cartObj.MedObj.Quantity}}</span> -->
+											</li>
+
+											<li ng-if="FromModule == 'booking'" ng-repeat="cartObj in CartItemList">
+												<i ng-click="addToCart(cartObj.bookingObj,false,$index)"
+													style="cursor: pointer;color: red;font-size: 20px;"
+													class="fa fa-minus-circle"></i>
+												<img ng-if="cartObj.DisplayPicture != null" style="width: 20px;"
+													src="{{UserImagePath + cartObj.DisplayPicture}}">
+												<img ng-if="cartObj.DisplayPicture == null" style="width: 50px;"
+													src="{{UserImagePath + TeamDetails.SpecialityLogo}}">
+												{{TeamDetails.SpecialityTitle}}
+												<!-- {{cartObj.MedObj.MedicineTitle}} * {{cartObj.MedObj.Quantity}} -->
+												<span>{{TeamDetails.SessionCharges }}</span>
+											</li>
+
+										</ul>
+
+										<div class="booking-total">
+											<ul class="booking-total-list">
+												<li>
+													<span>Total</span>
+													<span class="total-cost">Rs.{{totalBillAmount}}</span>
+												</li>
+												<li ng-if="FromModule != 'Lab'">
+													<!-- <span>Coupun Code</span> -->
+													<div class="form-group card-label">
+														<label>Discount Coupon</label>
+														<input ng-keydown="$event.keyCode === 13 && GetDiscountVouchers(VoucherTitle)" ng-blur="GetDiscountVouchers(VoucherTitle)"
+															ng-model="VoucherTitle" id="VoucherTitle" class="form-control"
+															type="text">
+													</div>
+												</li>
+												<li ng-if="AppliedDiscountAmount !=null && AppliedDiscountAmount > 0 && FromModule != 'Lab'">
+													<span style=" font-weight: 0 !important;color: black !important; ">Discount Applied</span>
+													<span class="total-cost">Rs.{{AppliedDiscountAmount | number : 0}}</span>
+												</li>
+												
+												<li ng-if="AppliedDiscountAmount !=null && AppliedDiscountAmount > 0 && FromModule != 'Lab'">
+													<span style=" font-weight: 0 !important;color: black !important; ">Payable</span>
+													<span class="total-cost">Rs.{{totalBillAmount - AppliedDiscountAmount | number : 0}}</span>
+												</li>
+												<li ng-if="VoucherMsg !=null && VoucherMsg != '' && FromModule != 'Lab'">
+													<span style=" font-weight: 0 !important;color: black !important; ">{{VoucherMsg}}</span>
+													<!-- <span class="total-cost">Rs.{{totalBillAmount - AppliedDiscountAmount}}</span> -->
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Booking Summary -->
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<ng-include src="'./angularjs/htmlTemplates/Footer.html'" style="width:100%;"></ng-include>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+	<!-- <script src="assets/js/bootstrap_datepicker2.js"></script> -->
+
+	<!-- Sticky Sidebar JS -->
+	<script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+	<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+
+</html>
